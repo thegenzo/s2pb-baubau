@@ -42,11 +42,14 @@ class UserController extends Controller
         ];
 
         $messages = [
-            'name.required'     => 'Nama user wajib diisi',
-            'level.required'    => 'Level user wajib diisi',
-            'email.required'    => 'Email user wajib diisi',
-            'email.email'       => 'Email user harus berformat email',
-            'email.unique'      => 'Email user sudah terpakai',
+            'name.required'         => 'Nama user wajib diisi',
+            'level.required'        => 'Level user wajib diisi',
+            'email.required'        => 'Email user wajib diisi',
+            'email.email'           => 'Email user harus berformat email',
+            'email.unique'          => 'Email user sudah terpakai',
+            'password.required'     => 'Password wajib diisi',
+            'password.min'          => 'Password harus berupa 8 karakter',
+            'password.confirmed'    => 'Password harus sama dengan konfirmasi password',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -103,11 +106,14 @@ class UserController extends Controller
         ];
 
         $messages = [
-            'name.required'     => 'Nama user wajib diisi',
-            'level.required'    => 'Level user wajib diisi',
-            'email.required'    => 'Email user wajib diisi',
-            'email.email'       => 'Email user harus berformat email',
-            'email.unique'      => 'Email user sudah terpakai',
+            'name.required'             => 'Nama user wajib diisi',
+            'level.required'            => 'Level user wajib diisi',
+            'email.required'            => 'Email user wajib diisi',
+            'email.email'               => 'Email user harus berformat email',
+            'email.unique'              => 'Email user sudah terpakai',
+            'password.required'         => 'Password wajib diisi',
+            'password.min'              => 'Password harus berupa 8 karakter',
+            'password.confirmed'        => 'Password harus sama dengan konfirmasi password',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
