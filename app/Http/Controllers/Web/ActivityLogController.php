@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\EvidenceTransaction;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class EvidenceTransactionController extends Controller
+class ActivityLogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class EvidenceTransactionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(EvidenceTransaction $evidenceTransaction)
+    public function show(ActivityLog $activityLog)
     {
         //
     }
@@ -42,7 +43,7 @@ class EvidenceTransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(EvidenceTransaction $evidenceTransaction)
+    public function edit(ActivityLog $activityLog)
     {
         //
     }
@@ -50,7 +51,7 @@ class EvidenceTransactionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, EvidenceTransaction $evidenceTransaction)
+    public function update(Request $request, ActivityLog $activityLog)
     {
         //
     }
@@ -58,7 +59,7 @@ class EvidenceTransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(EvidenceTransaction $evidenceTransaction)
+    public function destroy(ActivityLog $activityLog)
     {
         //
     }

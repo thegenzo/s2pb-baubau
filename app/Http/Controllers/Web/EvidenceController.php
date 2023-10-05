@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\CriminalPerpetrator;
+use App\Models\Evidence;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CriminalPerpetratorController extends Controller
+class EvidenceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class CriminalPerpetratorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CriminalPerpetrator $criminalPerpetrator)
+    public function show(Evidence $evidence)
     {
         //
     }
@@ -42,7 +43,7 @@ class CriminalPerpetratorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CriminalPerpetrator $criminalPerpetrator)
+    public function edit(Evidence $evidence)
     {
         //
     }
@@ -50,7 +51,7 @@ class CriminalPerpetratorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CriminalPerpetrator $criminalPerpetrator)
+    public function update(Request $request, Evidence $evidence)
     {
         //
     }
@@ -58,7 +59,7 @@ class CriminalPerpetratorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CriminalPerpetrator $criminalPerpetrator)
+    public function destroy(Evidence $evidence)
     {
         //
     }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use App\Models\Criteria;
 use Illuminate\Http\Request;
+use App\Models\EvidenceTransaction;
+use App\Http\Controllers\Controller;
 
-class CriteriaController extends Controller
+class EvidenceTransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class CriteriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Criteria $criteria)
+    public function show(EvidenceTransaction $evidenceTransaction)
     {
         //
     }
@@ -42,7 +43,7 @@ class CriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Criteria $criteria)
+    public function edit(EvidenceTransaction $evidenceTransaction)
     {
         //
     }
@@ -50,7 +51,7 @@ class CriteriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Criteria $criteria)
+    public function update(Request $request, EvidenceTransaction $evidenceTransaction)
     {
         //
     }
@@ -58,7 +59,7 @@ class CriteriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Criteria $criteria)
+    public function destroy(EvidenceTransaction $evidenceTransaction)
     {
         //
     }

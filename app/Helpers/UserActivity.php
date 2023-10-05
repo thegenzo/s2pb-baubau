@@ -9,12 +9,6 @@ use Request;
  * UserActivity
  * 
  * Track the user certain activities in this project
- * 
- * Call this helper when the users are doing:
- * - Account management (store, delete)
- * - Evidence (store, update, delete, show)
- * - Evidence Photo (store, delete)
- * - Evidence Transaction (store)
  */
 
 class UserActivity
@@ -23,7 +17,9 @@ class UserActivity
 	 * addToLog
 	 * 
 	 * Call this method when the users are doing:
-	 * - Account management (store, delete)
+	 * - User (store, delete)
+	 * - Criteria (store, update, delete)
+	 * - Criminal Perpetrator (store, update, delete)
 	 * - Evidence (store, update, delete, show)
 	 * - Evidence Photo (store, delete)
 	 * - Evidence Transaction (store)
@@ -40,8 +36,8 @@ class UserActivity
 		ActivityLog::create($log);
 	}
 	
-	public static function userActivityLists()
+	public static function userActivityLists($userId)
 	{
-		return ActivityLog::latest()->get();
+		return ActivityLog::where('user_id', $userId)->latest()->get();
 	}
 }
