@@ -37,6 +37,7 @@ class UserController extends Controller
         $rules = [
             'name'      => 'required',
             'level'     => 'required',
+            'avatar'    => 'image|mimes:jpeg,png,jpg',
             'email'     => 'required|email|unique:users',
             'password'  => 'required|min:8|confirmed',
         ];
@@ -44,6 +45,8 @@ class UserController extends Controller
         $messages = [
             'name.required'         => 'Nama user wajib diisi',
             'level.required'        => 'Level user wajib diisi',
+            'avatar.image'          => 'Avatar harus berupa gambar',
+            'avatar.mimes'          => 'Avatar harus berformat gambar (jpeg, png atau jpg)',
             'email.required'        => 'Email user wajib diisi',
             'email.email'           => 'Email user harus berformat email',
             'email.unique'          => 'Email user sudah terpakai',
@@ -65,14 +68,14 @@ class UserController extends Controller
             $filename = time(). '.jpg';
             $upload_filepath = 'public/users';
             $path = $image->storeAs($upload_filepath, $filename);
-            unset($data['image']);
-            $data['image'] = Storage::url($path);
+            unset($data['avatar']);
+            $data['avatar'] = Storage::url($path);
         } else {
-            $data['image'] = 'default.png';
+            $data['avatar'] = $request->level == 'admin' ? 'https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png' : 'https://cdn-icons-png.flaticon.com/512/945/945120.png';
         }
 
         $user = User::create($data);
-        UserActivity::addToLog('Menambahkan user baru : ' + $user->name);
+        UserActivity::addToLog('Menambahkan user baru : ' . $user->name);
 
         return redirect()->route('admin-panel.user.index')->with('success', 'User berhasil ditambahkan');
     }
@@ -101,6 +104,7 @@ class UserController extends Controller
         $rules = [
             'name'      => 'required',
             'level'     => 'required',
+            'avatar'    => 'image|mimes:jpeg,png,jpg',
             'email'     => 'required|email|unique:users,email,'.$user->id.'id',
             'password'  => 'required|min:8|confirmed',
         ];
@@ -108,6 +112,8 @@ class UserController extends Controller
         $messages = [
             'name.required'             => 'Nama user wajib diisi',
             'level.required'            => 'Level user wajib diisi',
+            'avatar.image'              => 'Avatar harus berupa gambar',
+            'avatar.mimes'              => 'Avatar harus berformat gambar (jpeg, png atau jpg)',
             'email.required'            => 'Email user wajib diisi',
             'email.email'               => 'Email user harus berformat email',
             'email.unique'              => 'Email user sudah terpakai',
@@ -129,14 +135,12 @@ class UserController extends Controller
             $filename = time(). '.jpg';
             $upload_filepath = 'public/users';
             $path = $image->storeAs($upload_filepath, $filename);
-            unset($data['image']);
-            $data['image'] = Storage::url($path);
-        } else {
-            $data['image'] = 'default.png';
+            unset($data['avatar']);
+            $data['avatar'] = Storage::url($path);
         }
 
         $user->update($data);
-        UserActivity::addToLog('Mengupdate data user : ' + $user->name);
+        UserActivity::addToLog('Mengupdate data user : ' . $user->name);
 
         return redirect()->route('admin-panel.user.index')->with('success', 'User berhasil diedit');
     }
@@ -146,8 +150,15 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        UserActivity::addToLog('Menghapus user ' + $user->name);
-        Storage::delete($user->avatar);
+        UserActivity::addToLog('Menghapus user ' . $user->name);
+        
+        // Delete related activity logs
+        $user->activity_log()->delete();
+        
+        if (Storage::exists('public' . $user->avatar)) {
+            Storage::delete('public' . $user->avatar);
+        }
+        
         $user->delete();
         
         return back()->with('success', 'User berhasil dihapus');

@@ -418,20 +418,35 @@
             </div>
         </div>
     </div>
-    <!--  Import Js Files -->
-    <script src="{{ asset('panel-assets/dist/libs/jquery/dist/jquery.min.js')}}"></script>
-    <script src="{{ asset('panel-assets/dist/libs/simplebar/dist/simplebar.min.js')}}"></script>
-    <script src="{{ asset('panel-assets/dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-    <!--  core files -->
-    <script src="{{ asset('panel-assets/dist/js/app.min.js')}}"></script>
-    <script src="{{ asset('panel-assets/dist/js/app.init.js')}}"></script>
-    <script src="{{ asset('panel-assets/dist/js/app-style-switcher.js')}}"></script>
-    <script src="{{ asset('panel-assets/dist/js/sidebarmenu.js')}}"></script>
-    <script src="{{ asset('panel-assets/dist/js/custom.js')}}"></script>
-    <!--  current page js files -->
-    <script src="{{ asset('panel-assets/dist/libs/owl.carousel/dist/owl.carousel.min.js')}}"></script>
-    <script src="{{ asset('panel-assets/dist/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
-    <script src="{{ asset('panel-assets/dist/js/dashboard.js')}}"></script>
+	@include('admin-panel.include.script')
+
+	@stack('addon-script')
+
+	@if($message = Session::get('success'))
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Swal.fire({
+                title: "Sukses!",
+                html: "{{ $message }}",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                icon: "success"
+            });
+        })
+    </script>
+    @elseif($message = Session::get('failed'))
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Swal.fire({
+                title: "Gagal!",
+                html: "{{ $message }}",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger",
+                icon: "error"
+            });
+        })
+    </script>
+    @endif
 </body>
 
 <!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Oct 2023 05:32:07 GMT -->

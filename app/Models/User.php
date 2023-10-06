@@ -49,4 +49,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(ActivityLog::class);
     }
+
+    public function getLevelAttribute($value)
+    {
+        $level = $value == 'admin' ? 'Admin' : 'User';
+
+        return $level;
+    }
 }

@@ -609,3 +609,10 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+    <!--  current page js files -->
+    <script src="{{ asset('panel-assets/dist/libs/owl.carousel/dist/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('panel-assets/dist/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
+    <script src="{{ asset('panel-assets/dist/js/dashboard.js')}}"></script>
+@endpush

@@ -42,7 +42,7 @@
 						<span class="hide-menu">Master Data</span>
 					</a>
 					<ul aria-expanded="false" class="collapse first-level">
-						<li class="sidebar-item">
+						<li class="sidebar-item {{ Route::is('admin-panel.user.*') ? 'active' : '' }}">
 							<a href="{{ route('admin-panel.user.index') }}" class="sidebar-link {{ Route::is('admin-panel.user.*') ? 'active' : '' }}">
 								<div class="round-16 d-flex align-items-center justify-content-center">
 									<i class="ti ti-circle"></i>
@@ -50,7 +50,7 @@
 								<span class="hide-menu">User</span>
 							</a>
 						</li>
-						<li class="sidebar-item">
+						<li class="sidebar-item {{ Route::is('admin-panel.criteria.*') ? 'active' : '' }}">
 							<a href="{{ route('admin-panel.criteria.index') }}" class="sidebar-link {{ Route::is('admin-panel.criteria.*') ? 'active' : '' }}">
 								<div class="round-16 d-flex align-items-center justify-content-center">
 									<i class="ti ti-circle"></i>

@@ -136,7 +136,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="d-flex align-items-center">
                                 <div class="user-profile-img">
-                                    <img src="{{ asset('panel-assets/dist/images/profile/user-1.jpg') }}"
+                                    <img src="{{ auth()->user()->avatar }}"
                                         class="rounded-circle" width="35" height="35"
                                         alt="" />
                                 </div>
@@ -149,14 +149,14 @@
                                     <h5 class="mb-0 fs-5 fw-semibold">User Profile</h5>
                                 </div>
                                 <div class="d-flex align-items-center py-9 mx-7 border-bottom">
-                                    <img src="{{ asset('panel-assets/dist/images/profile/user-1.jpg') }}"
+                                    <img src="{{ auth()->user()->avatar }}"
                                         class="rounded-circle" width="80" height="80"
                                         alt="" />
                                     <div class="ms-3">
-                                        <h5 class="mb-1 fs-3">Mathew Anderson</h5>
-                                        <span class="mb-1 d-block text-dark">Designer</span>
+                                        <h5 class="mb-1 fs-3">{{ auth()->user()->name }}</h5>
+                                        <span class="mb-1 d-block text-dark">{{ auth()->user()->level }}</span>
                                         <p class="mb-0 d-flex text-dark align-items-center gap-2">
-                                            <i class="ti ti-mail fs-4"></i> info@modernize.com
+                                            <i class="ti ti-mail fs-4"></i> {{ auth()->user()->email }}
                                         </p>
                                     </div>
                                 </div>
