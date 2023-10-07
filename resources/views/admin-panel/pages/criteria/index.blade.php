@@ -35,7 +35,7 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<a href="{{ route('admin-panel.criteria.create') }}" class="btn btn-secondary mb-3">Tambah User</a>
+							<a href="{{ route('admin-panel.criteria.create') }}" class="btn btn-secondary mb-3">Tambah Kriteria</a>
 							<div class="table-responsive">
 								<table id="dataTable" class="table border table-striped table-bordered display nowrap" style="width: 100%">
 									<thead>
