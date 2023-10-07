@@ -48,7 +48,7 @@ class CriteriaController extends Controller
         }
 
         $criteria = Criteria::create($request->all());
-        UserActivity::addToLog('Menambahkan kriteria ' + $criteria->name);
+        UserActivity::addToLog('Menambahkan kriteria ' . $criteria->name);
 
         return redirect()->route('admin-panel.criteria.index')->with('success', 'Kriteria berhasil ditambahkan!');
     }
@@ -64,16 +64,20 @@ class CriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Criteria $criteria)
+    public function edit($id)
     {
+        $criteria = Criteria::find($id);
+
         return view('admin-panel.pages.criteria.edit', compact('criteria'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Criteria $criteria)
+    public function update(Request $request, $id)
     {
+        $criteria = Criteria::find($id);
+        
         $rules = [
             'name' => 'required'
         ];
@@ -89,7 +93,7 @@ class CriteriaController extends Controller
         }
 
         $criteria->update($request->all());
-        UserActivity::addToLog('Mengedit kriteria ' + $criteria->name);
+        UserActivity::addToLog('Mengedit kriteria ' . $criteria->name);
 
         return redirect()->route('admin-panel.criteria.index')->with('success', 'Kriteria berhasil diedit!');
     }
@@ -97,12 +101,14 @@ class CriteriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Criteria $criteria)
+    public function destroy($id)
     {
+        $criteria = Criteria::find($id);
+
         if($criteria->evidence()->count() > 0) {
             return redirect()->back()->with('error', 'Kriteria ini memiliki data relasi dengan data Barang Bukti');
         }
-        UserActivity::addToLog('Menghapus kriteria ' + $criteria->name);
+        UserActivity::addToLog('Menghapus kriteria ' . $criteria->name);
         $criteria->delete();
 
         return back()->with('success', 'Kriteria berhasil dihapus');
