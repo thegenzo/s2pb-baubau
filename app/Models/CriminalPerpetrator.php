@@ -22,4 +22,11 @@ class CriminalPerpetrator extends Model
     {
         return $this->hasMany(Evidence::class);
     }
+
+    public function getGenderAttribute($value)
+    {
+        $gender = $value == 'male' ? 'Laki-laki' : 'Perempuan';
+
+        return $gender;
+    }
 }

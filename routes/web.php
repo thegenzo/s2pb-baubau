@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Web\CriminalPerpetratorController;
 use App\Http\Controllers\Web\CriteriaController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\UserController;
-use App\Models\CriminalPerpetrator;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('user', UserController::class, ['as' => 'admin-panel']);
 
-        Route::resource('criminal', CriminalPerpetrator::class, ['as' => 'admin-panel']);
+        Route::resource('criminal', CriminalPerpetratorController::class, ['as' => 'admin-panel']);
 
         Route::resource('criteria', CriteriaController::class, ['as' => 'admin-panel']);
     });

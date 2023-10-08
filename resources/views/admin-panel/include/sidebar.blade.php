@@ -60,12 +60,12 @@
 						</li>						
 					</ul>
 				</li>
-				<li class="sidebar-item">
-					<a class="sidebar-link" href="index2.html" aria-expanded="false">
+				<li class="sidebar-item {{ Route::is('admin-panel.criminal.*') ? 'selected' : '' }}">
+					<a class="sidebar-link" href="{{ route('admin-panel.criminal.index') }}" aria-expanded="false">
 						<span>
-							<i class="ti ti-shopping-cart"></i>
+							<i class="ti ti-prison"></i>
 						</span>
-						<span class="hide-menu">eCommerce</span>
+						<span class="hide-menu">PTP</span>
 					</a>
 				</li>
 				<li class="sidebar-item">

@@ -39,7 +39,7 @@ class CriminalPerpetratorController extends Controller
             'place_of_birth'        => 'required',
             'gender'                => 'required',
             'address'               => 'required',
-            'identification_number' => 'required|number|unique:criminal_perpetrators',
+            'identification_number' => 'required|numeric|unique:criminal_perpetrators',
         ];
 
         $messages = [
@@ -49,7 +49,7 @@ class CriminalPerpetratorController extends Controller
             'gender.required'                   => 'Jenis kelamin pelaku tindak pidana wajib diisi',
             'address.required'                  => 'Alamat pelaku tindak pidana wajib diisi',
             'identification_number.required'    => 'Nomor identitas pelaku tindak pidana wajib diisi',
-            'identification_number.number'      => 'Nomor identitas pelaku tindak pidana harus berupa angka',
+            'identification_number.numeric'     => 'Nomor identitas pelaku tindak pidana harus berupa angka',
             'identification_number.unique'      => 'Nomor identitas pelaku tindak pidana sudah terdata',
         ];
 
@@ -60,7 +60,7 @@ class CriminalPerpetratorController extends Controller
         }
 
         $criminal = CriminalPerpetrator::create($request->all());
-        UserActivity::addToLog('Menambahkan data pelaku tindak pidana ' + $criminal->name);
+        UserActivity::addToLog('Menambahkan data pelaku tindak pidana ' . $criminal->name);
 
         return redirect()->route('admin-panel.criminal.index')->with('success', 'Pelaku tindak pidana berhasil ditambahkan');
     }
@@ -76,23 +76,26 @@ class CriminalPerpetratorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CriminalPerpetrator $criminalPerpetrator)
+    public function edit($id)
     {
-        return view('admin-panel.pages.criminal.edit', compact('criminalPerpetrator'));
+        $criminal = CriminalPerpetrator::find($id);
+        return view('admin-panel.pages.criminal.edit', compact('criminal'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CriminalPerpetrator $criminalPerpetrator)
+    public function update(Request $request, $id)
     {
+        $criminal = CriminalPerpetrator::find($id);
+
         $rules = [
             'name'                  => 'required',
             'date_of_birth'         => 'required|date',
             'place_of_birth'        => 'required',
             'gender'                => 'required',
             'address'               => 'required',
-            'identification_number' => 'required|number',
+            'identification_number' => 'required|numeric|unique:criminal_perpetrators,identification_number, '.$criminal->id.'id',
         ];
 
         $messages = [
@@ -102,7 +105,8 @@ class CriminalPerpetratorController extends Controller
             'gender.required'                   => 'Jenis kelamin pelaku tindak pidana wajib diisi',
             'address.required'                  => 'Alamat pelaku tindak pidana wajib diisi',
             'identification_number.required'    => 'Nomor identitas pelaku tindak pidana wajib diisi',
-            'identification_number.number'      => 'Nomor identitas pelaku tindak pidana harus berupa angka',
+            'identification_number.numeric'     => 'Nomor identitas pelaku tindak pidana harus berupa angka',
+            'identification_number.unique'      => 'Nomor identitas pelaku tindak pidana sudah terdata',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -111,8 +115,8 @@ class CriminalPerpetratorController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all());
         }
 
-        $criminalPerpetrator->update($request->all());
-        UserActivity::addToLog('Mengedit data pelaku tindak pidana ' + $criminalPerpetrator->name);
+        $criminal->update($request->all());
+        UserActivity::addToLog('Mengedit data pelaku tindak pidana ' . $criminal->name);
 
         return redirect()->route('admin-panel.criminal.index')->with('success', 'Pelaku tindak pidana berhasil diedit');
     }
@@ -120,12 +124,17 @@ class CriminalPerpetratorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CriminalPerpetrator $criminalPerpetrator)
+    public function destroy($id)
     {
-        if($criminalPerpetrator->evidence()->count() > 0) {
+        $criminal = CriminalPerpetrator::find($id);
+
+        if($criminal->evidence()->count() > 0) {
             return back()->with('error', 'Data pelaku tindak pidana ini memiliki data relasi dengan data Barang Bukti');
         }
-        UserActivity::addToLog('Menghapus data pelaku tindak pidana ' + $criminalPerpetrator);
+
+        UserActivity::addToLog('Menghapus data pelaku tindak pidana ' . $criminal);
+        $criminal->delete();
+
         return back()->with('success', 'Pelaku tindak pidana berhasil dihapus');
     }
 }
