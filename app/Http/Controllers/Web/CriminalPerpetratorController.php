@@ -60,7 +60,7 @@ class CriminalPerpetratorController extends Controller
         }
 
         $criminal = CriminalPerpetrator::create($request->all());
-        UserActivity::addToLog('Menambahkan data pelaku tindak pidana ' . $criminal->name);
+        UserActivity::addToLog('Menambahkan data pelaku tindak pidana : ' . $criminal->name);
 
         return redirect()->route('admin-panel.criminal.index')->with('success', 'Pelaku tindak pidana berhasil ditambahkan');
     }
@@ -116,7 +116,7 @@ class CriminalPerpetratorController extends Controller
         }
 
         $criminal->update($request->all());
-        UserActivity::addToLog('Mengedit data pelaku tindak pidana ' . $criminal->name);
+        UserActivity::addToLog('Mengedit data pelaku tindak pidana : ' . $criminal->name);
 
         return redirect()->route('admin-panel.criminal.index')->with('success', 'Pelaku tindak pidana berhasil diedit');
     }
@@ -132,7 +132,7 @@ class CriminalPerpetratorController extends Controller
             return back()->with('error', 'Data pelaku tindak pidana ini memiliki data relasi dengan data Barang Bukti');
         }
 
-        UserActivity::addToLog('Menghapus data pelaku tindak pidana ' . $criminal);
+        UserActivity::addToLog('Menghapus data pelaku tindak pidana : ' . $criminal);
         $criminal->delete();
 
         return back()->with('success', 'Pelaku tindak pidana berhasil dihapus');

@@ -48,7 +48,7 @@ class CriteriaController extends Controller
         }
 
         $criteria = Criteria::create($request->all());
-        UserActivity::addToLog('Menambahkan kriteria ' . $criteria->name);
+        UserActivity::addToLog('Menambahkan kriteria : ' . $criteria->name);
 
         return redirect()->route('admin-panel.criteria.index')->with('success', 'Kriteria berhasil ditambahkan!');
     }
@@ -93,7 +93,7 @@ class CriteriaController extends Controller
         }
 
         $criteria->update($request->all());
-        UserActivity::addToLog('Mengedit kriteria ' . $criteria->name);
+        UserActivity::addToLog('Mengedit kriteria : ' . $criteria->name);
 
         return redirect()->route('admin-panel.criteria.index')->with('success', 'Kriteria berhasil diedit!');
     }
@@ -108,7 +108,7 @@ class CriteriaController extends Controller
         if($criteria->evidence()->count() > 0) {
             return redirect()->back()->with('error', 'Kriteria ini memiliki data relasi dengan data Barang Bukti');
         }
-        UserActivity::addToLog('Menghapus kriteria ' . $criteria->name);
+        UserActivity::addToLog('Menghapus kriteria : ' . $criteria->name);
         $criteria->delete();
 
         return back()->with('success', 'Kriteria berhasil dihapus');

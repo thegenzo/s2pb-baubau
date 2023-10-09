@@ -150,7 +150,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        UserActivity::addToLog('Menghapus user ' . $user->name);
+        UserActivity::addToLog('Menghapus user : ' . $user->name);
         
         // Delete related activity logs
         $user->activity_log()->delete();
@@ -162,5 +162,12 @@ class UserController extends Controller
         $user->delete();
         
         return back()->with('success', 'User berhasil dihapus');
+    }
+
+    public function userActivity()
+    {
+        $activities = UserActivity::userActivityLists(auth()->user()->id);
+
+        return view('admin-panel.pages.user.activity', compact('activities'));
     }
 }

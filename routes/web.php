@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'admin-panel'], function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin-panel.dashboard');
 
+        Route::get('/user/{id}/activity', [UserController::class, 'userActivity'])->name('admin-panel.user.activity');
         Route::resource('user', UserController::class, ['as' => 'admin-panel']);
 
         Route::resource('criminal', CriminalPerpetratorController::class, ['as' => 'admin-panel']);

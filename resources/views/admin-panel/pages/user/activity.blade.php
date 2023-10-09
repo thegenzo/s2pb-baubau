@@ -1,6 +1,6 @@
 @extends('admin-panel.layout.app')
 
-@section('title', 'Data User')
+@section('title', 'Aktivitas User')
 
 @push('addon-style')
 	<!-- Datatable -->
@@ -14,11 +14,11 @@
             <div class="card-body px-4 py-3">
                 <div class="row align-items-center">
                     <div class="col-9">
-                        <h4 class="fw-semibold mb-8">Data User</h4>
+                        <h4 class="fw-semibold mb-8">Aktivitas User</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a class="text-muted" href="{{ route('admin-panel.dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item" aria-current="page">Data User</li>
+                                <li class="breadcrumb-item" aria-current="page">Aktivitas User</li>
                             </ol>
                         </nav>
                     </div>
@@ -30,56 +30,48 @@
                 </div>
             </div>
         </div>
+		<section class="activity">
+			<div class="row">
+				<div class="col-12">
+					<div class="card w-100">
+						<div class="card-header bg-success">
+							<h4 class="mb-0 text-white card-title">Data User</h4>
+						</div>
+						<div class="card-body">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 		<section class="datatables">
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<a href="{{ route('admin-panel.user.create') }}" class="btn btn-secondary mb-3">Tambah User</a>
 							<div class="table-responsive">
 								<table id="dataTable" class="table border table-striped table-bordered display nowrap" style="width: 100%">
 									<thead>
 										<tr>
 											<th class="text-center">No</th>
-											<th>Nama</th>
-											<th>Level</th>
-											<th class="text-center">Avatar</th>
-											<th>Email</th>
-											<th class="text-center">Action</th>
+											<th>Aktivitas</th>
+											<th>User-Agent</th>
+											<th class="text-center">URL</th>
 										</tr>
 									</thead>
 									<tbody>
-										@forelse ($users as $user)
+										@forelse ($activities as $activity)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
-												<td>{{ $user->name }}</td>
-												<td>{{ $user->level }}</td>
+												<td>{{ $activity->activity }}</td>
+												<td>{{ $activity->user_agent }}</td>
 												<td class="text-center">
-													<img src="{{ $user->avatar }}" alt="" width="100px">
-												</td>
-												<td>{{ $user->email }}</td>
-												<td class="text-center">
-													<a href="{{ route('admin-panel.user.activity', $user->id) }} " class="btn btn-sm btn-info"
-                                                        data-toggle="tooltip" data-placement="top" title="Aktivitas User">
-                                                        <i class="ti ti-activity"></i>
-                                                    </a>
-													<a href="{{ route('admin-panel.user.edit', $user->id) }} " class="btn btn-sm btn-warning"
-                                                        data-toggle="tooltip" data-placement="top" title="Edit">
-                                                        <i class="fa fa-pencil-alt"></i>
-                                                    </a>
-                                                    <form action="{{ route('admin-panel.user.destroy', $user->id) }}" method="POST" class="d-inline swal-confirm">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-sm btn-danger" type="submit"
-                                                            data-id="{{ $user->id }}" data-toggle="tooltip" data-placement="top" title="Hapus">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </form>
+													<a href="{{ $activity->url }}" target="_blank">{{ $activity->url }}</a>
 												</td>
 											</tr>
 										@empty
 											<tr>
-												<td colspan="6" class="text-center">Data User Kosong</td>
+												<td colspan="4" class="text-center">Data Aktivitas Kosong</td>
 											</tr>
 										@endforelse
 									</tbody>
