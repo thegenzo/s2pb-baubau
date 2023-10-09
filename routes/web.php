@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Web\CriminalPerpetratorController;
 use App\Http\Controllers\Web\CriteriaController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\EvidenceController;
 use App\Http\Controllers\Web\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('criminal', CriminalPerpetratorController::class, ['as' => 'admin-panel']);
 
         Route::resource('criteria', CriteriaController::class, ['as' => 'admin-panel']);
+
+        Route::resource('evidence', EvidenceController::class, ['as' => 'admin-panel']);
     });
 });
 

@@ -68,12 +68,12 @@
 						<span class="hide-menu">PTP</span>
 					</a>
 				</li>
-				<li class="sidebar-item">
-					<a class="sidebar-link" href="index3.html" aria-expanded="false">
+				<li class="sidebar-item {{ Route::is('admin-panel.evidence.*') ? 'selected' : '' }}">
+					<a class="sidebar-link" href="{{ route('admin-panel.evidence.index') }}" aria-expanded="false">
 						<span>
-							<i class="ti ti-currency-dollar"></i>
+							<i class="ti ti-archive-filled"></i>
 						</span>
-						<span class="hide-menu">NFT</span>
+						<span class="hide-menu">Barang Bukti</span>
 					</a>
 				</li>
 				<li class="sidebar-item">

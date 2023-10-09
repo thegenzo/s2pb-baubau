@@ -155,19 +155,19 @@ class UserController extends Controller
         // Delete related activity logs
         $user->activity_log()->delete();
         
-        if (Storage::exists('public' . $user->avatar)) {
-            Storage::delete('public' . $user->avatar);
-        }
+        Storage::delete(basename($user->avatar));
         
         $user->delete();
         
         return back()->with('success', 'User berhasil dihapus');
     }
 
-    public function userActivity()
+    public function userActivity($id)
     {
-        $activities = UserActivity::userActivityLists(auth()->user()->id);
+        $activities = UserActivity::userActivityLists($id);
 
-        return view('admin-panel.pages.user.activity', compact('activities'));
+        $user = User::find($id);
+
+        return view('admin-panel.pages.user.activity', compact('activities', 'user'));
     }
 }

@@ -1,6 +1,6 @@
 @extends('admin-panel.layout.app')
 
-@section('title', 'Aktivitas User')
+@section('title', 'Data Barang Bukti')
 
 @push('addon-style')
 	<!-- Datatable -->
@@ -14,11 +14,11 @@
             <div class="card-body px-4 py-3">
                 <div class="row align-items-center">
                     <div class="col-9">
-                        <h4 class="fw-semibold mb-8">Aktivitas User</h4>
+                        <h4 class="fw-semibold mb-8">Data Barang Bukti</h4>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a class="text-muted" href="{{ route('admin-panel.dashboard') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item" aria-current="page">Aktivitas User</li>
+                                <li class="breadcrumb-item" aria-current="page">Data Barang Bukti</li>
                             </ol>
                         </nav>
                     </div>
@@ -30,68 +30,58 @@
                 </div>
             </div>
         </div>
-		<section class="activity">
-			<div class="row">
-				<div class="col-12">
-					<div class="card w-100">
-						<div class="card-header bg-success">
-							<h4 class="mb-0 text-white card-title">Data User</h4>
-						</div>
-						<div class="card-body">
-							<div class="row">
-								<div class="col-sm-12 col-md-4">
-									<div class="d-flex justify-content-center">
-										<img src="{{ $user->avatar }}" class="img-fluid" style="max-height:400px;">
-									</div>
-								</div>
-								<div class="col-sm-12 col-md-8">
-									<div class="form-group mb-3">
-										<label for="">Nama</label>
-										<input type="text" class="form-control" value="{{ $user->name }}" disabled>
-									</div>
-									<div class="form-group mb-3">
-										<label for="">Email</label>
-										<input type="text" class="form-control" value="{{ $user->email }}" disabled>
-									</div>
-									<div class="form-group mb-3">
-										<label for="">Level</label>
-										<input type="text" class="form-control" value="{{ $user->level }}" disabled>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
 		<section class="datatables">
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
+							<a href="{{ route('admin-panel.evidence.create') }}" class="btn btn-secondary mb-3">Tambah Barang Bukti</a>
 							<div class="table-responsive">
 								<table id="dataTable" class="table border table-striped table-bordered display nowrap" style="width: 100%">
 									<thead>
 										<tr>
 											<th class="text-center">No</th>
-											<th>Aktivitas</th>
-											<th>User-Agent</th>
-											<th class="text-center">URL</th>
+											<th>Pemilik Barang</th>
+											<th class="text-center">Kriteria</th>
+ 											<th class="text-center">Nomor Register</th>
+											<th>Nama BB</th>
+											<th>Tgl. Masuk</th>
+											<th>Lokasi Penyimpanan</th>
+											<th class="text-center">Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										@forelse ($activities as $activity)
+										@forelse ($evidences as $evidence)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
-												<td>{{ $activity->activity }}</td>
-												<td>{{ $activity->user_agent }}</td>
+												<td>{{ $evidence->criminal_perpetrator->name }}</td>
+												<td class="text-center">{{ $evidence->criteria->name }}</td>
+												<td class="text-center">{{ $evidence->register_number }}</td>
+												<td>{{ $evidence->name }}</td>
+												<td>{{ \Carbon\Carbon::parse($evidence->entry_date)->locale('id')->isoFormat('LL') }}</td>
+												<td>{{ $evidence->storage_location }}</td>
 												<td class="text-center">
-													<a href="{{ $activity->url }}" target="_blank">{{ $activity->url }}</a>
+													<a href="{{ route('admin-panel.evidence.show', $evidence->id) }} " class="btn btn-sm btn-info"
+                                                        data-toggle="tooltip" data-placement="top" title="Lihat">
+                                                        <i class="ti ti-eye-check"></i>
+                                                    </a>
+													<a href="{{ route('admin-panel.evidence.edit', $evidence->id) }} " class="btn btn-sm btn-warning"
+                                                        data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <i class="fa fa-pencil-alt"></i>
+                                                    </a>
+                                                    <form action="{{ route('admin-panel.evidence.destroy', $evidence->id) }}" method="POST" class="d-inline swal-confirm">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-sm btn-danger" type="submit"
+                                                            data-id="{{ $evidence->id }}">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
 												</td>
 											</tr>
 										@empty
 											<tr>
-												<td colspan="4" class="text-center">Data Aktivitas Kosong</td>
+												<td colspan="8" class="text-center">Data Barang Bukti Kosong</td>
 											</tr>
 										@endforelse
 									</tbody>
@@ -118,8 +108,8 @@
 			var id = $(this).data("id");
 			event.preventDefault();
 			Swal.fire({
-				title: 'Yakin Hapus User?',
-				text: "User yang terhapus tidak dapat dikembalikan",
+				title: 'Yakin Hapus Barang Bukti?',
+				text: "Barang Bukti yang terhapus tidak dapat dikembalikan",
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
