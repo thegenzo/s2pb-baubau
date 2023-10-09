@@ -6,6 +6,7 @@ use App\Helpers\UserActivity;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -131,6 +132,11 @@ class UserController extends Controller
         $data = $request->all();
 
         if($request->has('avatar')) {
+            // remove the old avatar
+            $deletePath = public_path($user->avatar);
+            File::delete($deletePath);
+
+            // upload new avatar
             $image = $request->file('avatar');
             $filename = time(). '.jpg';
             $upload_filepath = 'public/users';
@@ -155,10 +161,17 @@ class UserController extends Controller
         // Delete related activity logs
         $user->activity_log()->delete();
         
-        Storage::delete(basename($user->avatar));
+        // Construct the full storage path
+        $filePath = public_path($user->avatar);
+
+        // Check if the file exists
+        if (file_exists($filePath)) {
+            // Delete the file
+            File::delete($filePath);
+        } 
         
         $user->delete();
-        
+
         return back()->with('success', 'User berhasil dihapus');
     }
 
