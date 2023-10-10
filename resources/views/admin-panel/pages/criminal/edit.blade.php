@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="card bg-light-info shadow-none position-relative overflow-hidden">
+        <div class="card bg-light-warning shadow-none position-relative overflow-hidden">
             <div class="card-body px-4 py-3">
                 <div class="row align-items-center">
                     <div class="col-9">
@@ -27,9 +27,9 @@
                         </nav>
                     </div>
                     <div class="col-3">
-                        <div class="text-center mb-n5">
-                            <img src="{{ asset('panel-assets/dist/images/breadcrumb/ChatBc.png') }}" alt=""
-                                class="img-fluid mb-n4">
+                        <div class="text-center mb-n2">
+                            <img src="{{ asset('panel-assets/dist/images/breadcrumb/partnership.png') }}" alt=""
+                                class="img-fluid mb-n2">
                         </div>
                     </div>
                 </div>

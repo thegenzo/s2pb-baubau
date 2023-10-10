@@ -23,8 +23,9 @@
                         </nav>
                     </div>
                     <div class="col-3">
-                        <div class="text-center mb-n5">
-                            <img src="{{ asset('panel-assets/dist/images/breadcrumb/ChatBc.png') }}" alt="" class="img-fluid mb-n4">
+                        <div class="text-center">
+                            <img src="{{ asset('panel-assets/dist/images/breadcrumb/box.png') }}" alt=""
+                                class="img-fluid">
                         </div>
                     </div>
                 </div>
