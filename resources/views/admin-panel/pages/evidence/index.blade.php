@@ -54,11 +54,11 @@
 										@forelse ($evidences as $evidence)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
-												<td class="text-center">{!! $evidence->getBarcodeAttribute($evidence->register_number) !!}</td>
+												<td class="text-center">{!! $evidence->getBarcodeAttribute($evidence->register_number, 2.5, 80) !!}</td>
 												<td>{{ $evidence->criminal_perpetrator->name }}</td>
 												<td class="text-center">{{ $evidence->criteria->name }}</td>
 												<td>{{ $evidence->name }}</td>
-												<td>{{ \Carbon\Carbon::parse($evidence->entry_date)->locale('id')->isoFormat('LL') }}</td>
+												<td>{{ $evidence->entry_date }}</td>
 												<td>{{ $evidence->storage_location }}</td>
 												<td class="text-center">
 													<a href="{{ route('admin-panel.evidence.show', $evidence->id) }} " class="btn btn-sm btn-info"

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Milon\Barcode\DNS1D;
@@ -42,9 +43,14 @@ class Evidence extends Model
         return $this->hasMany(EvidenceTransaction::class);
     }
 
-    public function getBarcodeAttribute($value)
+    public function getEntryDateAttribute($value)
+    {
+        return Carbon::parse($value)->locale('id')->isoFormat('LL');
+    }
+
+    public function getBarcodeAttribute($value, $w, $h)
     {
         $dns1d = new DNS1D();
-        return $dns1d->getBarcodeSVG($value, 'UPCA', 2.5, 80);
+        return $dns1d->getBarcodeSVG($value, 'UPCA', $w, $h);
     }   
 }

@@ -6,6 +6,7 @@ use App\Helpers\UserActivity;
 use App\Models\Evidence;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -73,6 +74,12 @@ class EvidenceController extends Controller
         $data['criteria_id'] = $request->criteria_id;
 
         $evidence = Evidence::create($data);
+
+        $evidence->evidence_transaction()->create([
+            'transaction_date' => Date::now(),
+            'transaction_type' => 'in',
+            'notes' => 'Barang masuk di ' . $evidence->storage_location
+        ]);
 
         UserActivity::addToLog('Menambahkan Data Barang Bukti Baru : ' . $evidence->name);
 
