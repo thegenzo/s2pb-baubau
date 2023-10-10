@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Milon\Barcode\DNS1D;
 
 class Evidence extends Model
 {
@@ -40,4 +41,10 @@ class Evidence extends Model
     {
         return $this->hasMany(EvidenceTransaction::class);
     }
+
+    public function getBarcodeAttribute($value)
+    {
+        $dns1d = new DNS1D();
+        return $dns1d->getBarcodeSVG($value, 'UPCA', 2.5, 80);
+    }   
 }

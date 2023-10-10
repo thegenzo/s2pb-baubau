@@ -41,9 +41,9 @@
 									<thead>
 										<tr>
 											<th class="text-center">No</th>
+											<th class="text-center">Barcode</th>
 											<th>Pemilik Barang</th>
 											<th class="text-center">Kriteria</th>
- 											<th class="text-center">Nomor Register</th>
 											<th>Nama BB</th>
 											<th>Tgl. Masuk</th>
 											<th>Lokasi Penyimpanan</th>
@@ -54,9 +54,9 @@
 										@forelse ($evidences as $evidence)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
+												<td class="text-center">{!! $evidence->getBarcodeAttribute($evidence->register_number) !!}</td>
 												<td>{{ $evidence->criminal_perpetrator->name }}</td>
 												<td class="text-center">{{ $evidence->criteria->name }}</td>
-												<td class="text-center">{{ $evidence->register_number }}</td>
 												<td>{{ $evidence->name }}</td>
 												<td>{{ \Carbon\Carbon::parse($evidence->entry_date)->locale('id')->isoFormat('LL') }}</td>
 												<td>{{ $evidence->storage_location }}</td>
@@ -81,7 +81,7 @@
 											</tr>
 										@empty
 											<tr>
-												<td colspan="8" class="text-center">Data Barang Bukti Kosong</td>
+												<td colspan="9" class="text-center">Data Barang Bukti Kosong</td>
 											</tr>
 										@endforelse
 									</tbody>
