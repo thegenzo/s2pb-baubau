@@ -75,8 +75,8 @@
                                 <label for="name">Level <span class="text-danger">*</span></label>
                                 <select name="level" id="level" class="select2 form-control" style="width: 100%; height: 36px">
 									<option value="" selected hidden>--- Pilih Level ---</option>
-									<option value="admin">Admin</option>
-									<option value="user">User</option>
+									<option value="admin" {{ old('level') == 'admin' ? 'selected' : ''}}>Admin</option>
+									<option value="user" {{ old('level') == 'user' ? 'selected' : ''}}>User</option>
 								</select>
                             </div>
                             <div class="form-group mb-3">

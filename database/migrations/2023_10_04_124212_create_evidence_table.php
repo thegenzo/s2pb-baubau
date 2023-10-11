@@ -24,6 +24,7 @@ return new class extends Migration
             $table->longText('description');
             $table->date('entry_date');
             $table->string('storage_location');
+            $table->enum('status', ['detained', 'returned', 'terminated']);
             $table->timestamps();
         });
     }

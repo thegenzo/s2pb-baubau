@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
             Route::delete('/evidence/transaction/{id}', 'destroy')->name('admin-panel.transaction.destroy');
         });
 
+        Route::put('/evidence/terminate/{id}', [EvidenceController::class, 'terminateEvidence'])->name('admin-panel.evidence.terminate');
+        Route::put('/evidence/return/{id}', [EvidenceController::class, 'returnEvidence'])->name('admin-panel.evidence.return');
         Route::resource('evidence', EvidenceController::class, ['as' => 'admin-panel']);
     });
 });

@@ -72,8 +72,6 @@
 												<option value="" selected hidden>--- Pilih Tipe Transaksi ---</option>
 												<option value="in" {{ old('transaction_type') == 'in' ? 'selected' : '' }}>Barang Masuk</option>
 												<option value="out" {{ old('transaction_type') == 'out' ? 'selected' : '' }}>Barang Keluar</option>
-												<option value="returned" {{ old('transaction_type') == 'returned' ? 'selected' : '' }}>Barang Dikembalikan</option>
-												<option value="terminated" {{ old('transaction_type') == 'terminated' ? 'selected' : '' }}>Barang Dimusnahkan</option>
 											</select>
 										</div>
 									</div>

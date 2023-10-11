@@ -171,4 +171,38 @@ class EvidenceController extends Controller
 
         return back()->with('success', 'Data Barang Bukti berhasil dihapus');
     }
+
+    public function returnEvidence($id)
+    {
+        $evidence = Evidence::find($id);
+        $evidence->status = 'returned';
+        $evidence->save();
+
+        $evidence->evidence_transaction()->create([
+            'transaction_type' => 'returned',
+            'transaction_date' => Date::now(),
+            'notes' => 'Barang Bukti telah dikembalikan'
+        ]);
+
+        UserActivity::addToLog('Mengembalikan barang bukti : ' . $evidence->name);
+
+        return back()->with('success', 'Barang Bukti sukses dikembalikan');
+    }
+
+    public function terminateEvidence($id)
+    {
+        $evidence = Evidence::find($id);
+        $evidence->status = 'terminated';
+        $evidence->save();
+
+        $evidence->evidence_transaction()->create([
+            'transaction_type' => 'terminated',
+            'transaction_date' => Date::now(),
+            'notes' => 'Barang Bukti telah dimusnahkan'
+        ]);
+
+        UserActivity::addToLog('Memusnahkan barang bukti : ' . $evidence->name);
+
+        return back()->with('success', 'Barang Bukti sukses dimusnahkan');
+    }
 }

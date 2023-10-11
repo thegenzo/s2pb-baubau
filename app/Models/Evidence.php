@@ -20,7 +20,8 @@ class Evidence extends Model
         'unit',
         'description',
         'entry_date',
-        'storage_location'
+        'storage_location',
+        'status'
     ];
 
     public function criminal_perpetrator()

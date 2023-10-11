@@ -31,12 +31,13 @@ class EvidencePhotoController extends Controller
     public function store(Request $request, $id)
     {
         $rules = [
-            'avatar'    => 'image|mimes:jpeg,png,jpg',
+            'image'                => 'required|image|mimes:jpeg,png,jpg',
         ];
 
         $messages = [
-            'avatar.image'          => 'Avatar harus berupa gambar',
-            'avatar.mimes'          => 'Avatar harus berformat gambar (jpeg, png atau jpg)',
+            'image.required'       => 'Foto wajib diisi',
+            'image.image'          => 'Foto harus berupa gambar',
+            'image.mimes'          => 'Foto harus berformat gambar (jpeg, png atau jpg)',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -86,6 +87,5 @@ class EvidencePhotoController extends Controller
         $photo->delete();
 
         return back()->with('success', 'Foto BB berhasil dihapus');
-                
     }
 }

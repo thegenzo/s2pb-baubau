@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="{{ asset('panel-assets/dist/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
 @endpush
 
+@php
+$state = [
+	'detained' => 'primary',
+	'returned' => 'success',
+	'terminated' => 'danger'
+];
+
+$label = [
+	'detained' => 'Ditahan',
+	'returned' => 'Dikembalikan',
+	'terminated' => 'Dimusnahkan'
+];
+@endphp
+
 @section('content')
     <div class="container-fluid">
         <div class="card bg-light-info shadow-none position-relative overflow-hidden">
@@ -48,6 +62,7 @@
 											<th>Nama BB</th>
 											<th>Tgl. Masuk</th>
 											<th>Lokasi Penyimpanan</th>
+											<th class="text-center">Status</th>
 											<th class="text-center">Action</th>
 										</tr>
 									</thead>
@@ -62,6 +77,9 @@
 												<td>{{ $evidence->entry_date }}</td>
 												<td>{{ $evidence->storage_location }}</td>
 												<td class="text-center">
+													<span class="badge rounded-pill bg-{{ $state[$evidence->status] }}">{{ $label[$evidence->status] }}</span>
+												</td>
+												<td class="text-center">
 													<a href="{{ route('admin-panel.evidence.show', $evidence->id) }} " class="btn btn-sm btn-info"
                                                         data-toggle="tooltip" data-placement="top" title="Lihat">
                                                         <i class="ti ti-eye-check"></i>
@@ -74,10 +92,30 @@
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-sm btn-danger" type="submit"
-                                                            data-id="{{ $evidence->id }}">
+                                                            data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Hapus">
                                                             <i class="fas fa-trash"></i>
                                                         </button>
                                                     </form>
+													@if ($evidence->status == 'detained')
+													<div>
+														<form action="{{ route('admin-panel.evidence.return', $evidence->id) }}" method="POST" class="d-inline return-evidence">
+															@csrf
+															@method('PUT')
+															<button class="btn btn-sm btn-success mt-1" type="submit"
+																data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Kembalikan BB">
+																<i class="fas fa-undo"></i>
+															</button>
+														</form>
+														<form action="{{ route('admin-panel.evidence.terminate', $evidence->id) }}" method="POST" class="d-inline terminate-evidence">
+															@csrf
+															@method('PUT')
+															<button class="btn btn-sm btn-danger mt-1" type="submit"
+																data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Musnahkan BB">
+																<i class="fas fa-bomb"></i>
+															</button>
+														</form>
+													</div>
+													@endif
 												</td>
 											</tr>
 										@empty
@@ -111,6 +149,46 @@
 			Swal.fire({
 				title: 'Yakin Hapus Barang Bukti?',
 				text: "Barang Bukti yang terhapus tidak dapat dikembalikan",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Ya, hapus!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					form.submit()
+				} else if (result.isDenied) {
+					Swal.fire('Perubahan tidak disimpan', '', 'info')
+				}
+			})
+		});
+
+		$('.return-evidence').click(function(event) {
+			var form = $(this).closest("form");
+			var id = $(this).data("id");
+			event.preventDefault();
+			Swal.fire({
+				title: 'Kembalikan Barang Bukti?',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Ya, hapus!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					form.submit()
+				} else if (result.isDenied) {
+					Swal.fire('Perubahan tidak disimpan', '', 'info')
+				}
+			})
+		});
+
+		$('.terminate-evidence').click(function(event) {
+			var form = $(this).closest("form");
+			var id = $(this).data("id");
+			event.preventDefault();
+			Swal.fire({
+				title: 'Musnahkan Barang Bukti?',
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',

@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="{{ asset('../../dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
 @endpush
 
+@php
+$label = [
+    'detained' => 'Ditahan',
+    'returned' => 'Dikembalikan',
+    'terminated' => 'Dimusnahkan'
+];
+@endphp
+
 @section('content')
     <div class="container-fluid">
         <div class="card bg-light-success shadow-none position-relative overflow-hidden">
@@ -80,7 +88,7 @@
                     </div>
                     <div class="card-body">
                         <div id="sync1" class="owl-carousel owl-theme">
-                            @forelse ($evidence->evidence_photo as $key => $value)
+                            @forelse ($evidence->evidence_photo()->latest()->get() as $key => $value)
                                 <div class="item rounded overflow-hidden">
                                     <img src="{{ $value->image }}" alt="" class="img-fluid">
                                 </div>
@@ -91,7 +99,11 @@
                             @endforelse
                         </div>
                         <div class="d-flex justify-content-center mt-3">
+                            @if ($evidence->status == 'detained')
                             <a href="{{ route('admin-panel.photos.index', $evidence->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-image"></i> Tambah Foto BB</a>
+                            @else
+                            <p>Tidak bisa menambahkan foto BB karena BB telah {{ $label[$evidence->status] }}</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -109,7 +121,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($evidence->evidence_transaction as $key => $value)
+                                @forelse ($evidence->evidence_transaction()->latest()->get() as $key => $value)
                                     <tr>
                                         <td class="text-center">{{ $value->transaction_date }}</td>
                                         <td>{{ $value->transaction_type }}</td>
@@ -123,7 +135,11 @@
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-center">
+                            @if ($evidence->status == 'detained')
                             <a href="{{ route('admin-panel.transaction.index', $evidence->id) }}" class="btn btn-sm btn-success"><i class="fa fa-file"></i> Tambah Transaksi BB</a>
+                            @else
+                            <p>Tidak bisa menambahkan transaksi BB karena BB telah {{ $label[$evidence->status] }}</p>
+                            @endif
                         </div>
                     </div>
                 </div>

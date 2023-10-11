@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-3">
                         <div class="text-center">
-                            <img src="{{ asset('panel-assets/dist/images/breadcrumb/partnership.png') }}" alt=""
+                            <img src="{{ asset('panel-assets/dist/images/breadcrumb/criteria.png') }}" alt=""
                                 class="img-fluid">
                         </div>
                     </div>
