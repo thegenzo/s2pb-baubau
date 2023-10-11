@@ -2,58 +2,59 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Helpers\UserActivity;
 use Illuminate\Http\Request;
 use App\Models\EvidenceTransaction;
 use App\Http\Controllers\Controller;
+use App\Models\Evidence;
+use Illuminate\Support\Facades\Validator;
 
 class EvidenceTransactionController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(EvidenceTransaction $evidenceTransaction)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(EvidenceTransaction $evidenceTransaction)
+    public function index($id)
     {
-        //
+        $evidence = Evidence::find($id);
+
+        $transactions = $evidence->evidence_transaction()->get();
+        
+        return view('admin-panel.pages.evidence.transaction', compact('transactions', 'evidence'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, EvidenceTransaction $evidenceTransaction)
+    public function store(Request $request, $id)
     {
-        //
+        $rules = [
+            'transaction_date'              => 'required|date',
+            'transaction_type'              => 'required',
+            'notes'                         => 'required',
+        ];
+
+        $messages = [
+            'transaction_date.required'                  => 'Tanggal Transaksi wajib diisi',
+            'transaction_date.date'                      => 'Tanggal Transaksi harus berformat tanggal',
+            'transaction_type.required'                  => 'Tipe Transaksi wajib diisi',
+            'notes.required'                             => 'Keterangan wajib diisi',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+
+        $evidence = Evidence::find($id);
+        $data = $request->all();
+        $data['evidence_id'] = $evidence->id;
+        $transaction = EvidenceTransaction::create($data);
+
+        UserActivity::addToLog('Menambahkan data transaksi baru pada BB ' . $evidence->name . ' : ' . $transaction->transaction_type . ' ' . '. PS : ' . $transaction->notes);
+
+        return redirect()->back()->with('success', 'Data Transaksi BB berhasil ditambahkan');
     }
 
     /**
@@ -61,6 +62,6 @@ class EvidenceTransactionController extends Controller
      */
     public function destroy(EvidenceTransaction $evidenceTransaction)
     {
-        //
+        
     }
 }

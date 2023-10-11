@@ -7,6 +7,7 @@ use App\Models\Evidence;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,7 +18,7 @@ class EvidenceController extends Controller
      */
     public function index()
     {
-        $evidences = Evidence::all();
+        $evidences = Evidence::latest()->get();
 
         return view('admin-panel.pages.evidence.index', compact('evidences'));
     }
@@ -160,7 +161,7 @@ class EvidenceController extends Controller
         $evidence->evidence_transaction()->delete();
 
         foreach ($evidence->evidence_photo()->get() as $data) {
-            Storage::delete($data->image);
+            File::delete($data->image);
             $data->delete();
         }
 

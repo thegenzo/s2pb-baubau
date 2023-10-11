@@ -63,7 +63,7 @@
                                 <select name="criminal_perpetrator_id" id="criminal_perpetrator_id" class="select2 form-control" style="width: 100%; height: 36px">
 									<option value="" selected hidden>--- Pilih BB ---</option>
 									@foreach (\App\Models\CriminalPerpetrator::all() as $criminal)
-									<option value="{{ $criminal->id }}">{{ $criminal->name }}</option>
+									<option value="{{ $criminal->id }}" {{ old('criminal_perpetrator_id') == $criminal->id ? 'selected' : '' }}>{{ $criminal->name }}</option>
 									@endforeach
 								</select>
                             </div>
@@ -72,7 +72,7 @@
                                 <select name="criteria_id" id="criteria_id" class="select2 form-control" style="width: 100%; height: 36px">
 									<option value="" selected hidden>--- Pilih Kriteria ---</option>
 									@foreach (\App\Models\Criteria::all() as $criteria)
-									<option value="{{ $criteria->id }}">{{ $criteria->name }}</option>
+									<option value="{{ $criteria->id }}" {{ old('criteria_id') == $criteria->id ? 'selected' : '' }}>{{ $criteria->name }}</option>
 									@endforeach
 								</select>
                             </div>

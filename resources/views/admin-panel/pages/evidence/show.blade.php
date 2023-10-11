@@ -123,7 +123,7 @@
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-center">
-                            <a href="" class="btn btn-sm btn-success"><i class="fa fa-file"></i> Tambah Transaksi BB</a>
+                            <a href="{{ route('admin-panel.transaction.index', $evidence->id) }}" class="btn btn-sm btn-success"><i class="fa fa-file"></i> Tambah Transaksi BB</a>
                         </div>
                     </div>
                 </div>

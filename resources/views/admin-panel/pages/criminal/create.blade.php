@@ -81,8 +81,8 @@
                                 <label for="gender">Jenis Kelamin <span class="text-danger">*</span></label>
                                 <select name="gender" id="gender" class="select2 form-control" style="width: 100%; height: 36px">
 									<option value="" selected hidden>--- Pilih Jenis Kelamin ---</option>
-									<option value="male">Laki-laki</option>
-									<option value="female">Perempuan</option>
+									<option value="male" {{ old('gender') == 'male' ? 'selected' : ''}}>Laki-laki</option>
+									<option value="female" {{ old('gender') == 'female' ? 'selected' : ''}}>Perempuan</option>
 								</select>
                             </div>
                             <div class="form-group mb-3">

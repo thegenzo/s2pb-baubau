@@ -29,7 +29,7 @@
 				<li class="sidebar-item {{ Route::is('admin-panel.dashboard') ? 'selected' : '' }}">
  					<a class="sidebar-link" href="{{ route('admin-panel.dashboard') }}" aria-expanded="false">
 						<span>
-							<i class="ti ti-aperture"></i>
+							<i class="ti ti-dashboard"></i>
 						</span>
 						<span class="hide-menu">Dashboard</span>
 					</a>
@@ -63,7 +63,7 @@
 				<li class="sidebar-item {{ Route::is('admin-panel.criminal.*') ? 'selected' : '' }}">
 					<a class="sidebar-link" href="{{ route('admin-panel.criminal.index') }}" aria-expanded="false">
 						<span>
-							<i class="ti ti-prison"></i>
+							<i class="ti ti-user-x"></i>
 						</span>
 						<span class="hide-menu">PTP</span>
 					</a>
