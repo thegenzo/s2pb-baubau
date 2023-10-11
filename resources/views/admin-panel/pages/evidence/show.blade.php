@@ -90,8 +90,8 @@
                                 </div>
                             @endforelse
                         </div>
-                        <div class="d-flex justify-content-center ">
-                            <a href="" class="btn btn-sm btn-danger"><i class="fa fa-image"></i> Tambah Foto BB</a>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a href="{{ route('admin-panel.photos.index', $evidence->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-image"></i> Tambah Foto BB</a>
                         </div>
                     </div>
                 </div>

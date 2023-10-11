@@ -18,7 +18,7 @@ class EvidenceTransactionController extends Controller
     {
         $evidence = Evidence::find($id);
 
-        $transactions = $evidence->evidence_transaction()->get();
+        $transactions = $evidence->evidence_transaction()->latest()->get();
         
         return view('admin-panel.pages.evidence.transaction', compact('transactions', 'evidence'));
     }
