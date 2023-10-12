@@ -34,6 +34,7 @@
 						<span class="hide-menu">Dashboard</span>
 					</a>
 				</li>
+				@if(auth()->user()->level == 'admin')
 				<li class="sidebar-item {{ Route::is('admin-panel.user.*') ? 'selected' : '' }}">
 					<a class="sidebar-link" href="{{ route('admin-panel.user.index') }}" aria-expanded="false">
 					   <span>
@@ -42,6 +43,7 @@
 					   <span class="hide-menu">User</span>
 				   </a>
 			   </li>
+			   @endif
 			   <li class="sidebar-item {{ Route::is('admin-panel.criteria.*') ? 'selected' : '' }}">
 					<a class="sidebar-link" href="{{ route('admin-panel.criteria.index') }}" aria-expanded="false">
 						<span>

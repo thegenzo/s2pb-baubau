@@ -26,35 +26,38 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::group(['prefix' => 'admin-panel'], function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin-panel.dashboard');
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-        Route::get('/user/{id}/activity', [UserController::class, 'userActivity'])->name('admin-panel.user.activity');
-        Route::resource('user', UserController::class, ['as' => 'admin-panel']);
-
-        Route::resource('criminal', CriminalPerpetratorController::class, ['as' => 'admin-panel']);
-
-        Route::resource('criteria', CriteriaController::class, ['as' => 'admin-panel']);
-
-        Route::controller(EvidencePhotoController::class)->group(function () {
-            Route::get('/evidence/photos/{id}', 'index')->name('admin-panel.photos.index');
-            Route::post('/evidence/photos/{id}', 'store')->name('admin-panel.photos.store');
-            Route::delete('/evidence/photos/{id}', 'destroy')->name('admin-panel.photos.destroy');
+        Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
+            Route::get('/user/{id}/activity', [UserController::class, 'userActivity'])->name('admin-panel.user.activity');
+            Route::resource('user', UserController::class, ['as' => 'admin-panel']);
+    
+            Route::controller(EvidencePhotoController::class)->group(function () {
+                Route::get('/evidence/photos/{id}', 'index')->name('admin-panel.photos.index');
+                Route::post('/evidence/photos/{id}', 'store')->name('admin-panel.photos.store');
+                Route::delete('/evidence/photos/{id}', 'destroy')->name('admin-panel.photos.destroy');
+            });
+    
+            Route::controller(EvidenceTransactionController::class)->group(function () {
+                Route::get('/evidence/transaction/{id}', 'index')->name('admin-panel.transaction.index');
+                Route::post('/evidence/transaction/{id}', 'store')->name('admin-panel.transaction.store');
+                Route::delete('/evidence/transaction/{id}', 'destroy')->name('admin-panel.transaction.destroy');
+            });
+    
+            Route::put('/evidence/terminate/{id}', [EvidenceController::class, 'terminateEvidence'])->name('admin-panel.evidence.terminate');
+            Route::put('/evidence/return/{id}', [EvidenceController::class, 'returnEvidence'])->name('admin-panel.evidence.return');
         });
 
-        Route::controller(EvidenceTransactionController::class)->group(function () {
-            Route::get('/evidence/transaction/{id}', 'index')->name('admin-panel.transaction.index');
-            Route::post('/evidence/transaction/{id}', 'store')->name('admin-panel.transaction.store');
-            Route::delete('/evidence/transaction/{id}', 'destroy')->name('admin-panel.transaction.destroy');
+        Route::group(['middleware' => ['auth', 'ceklevel:admin,user']], function () {
+            Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin-panel.dashboard');
+            Route::resource('criminal', CriminalPerpetratorController::class, ['as' => 'admin-panel']);
+            Route::resource('criteria', CriteriaController::class, ['as' => 'admin-panel']);
+            Route::resource('evidence', EvidenceController::class, ['as' => 'admin-panel']);
         });
-
-        Route::put('/evidence/terminate/{id}', [EvidenceController::class, 'terminateEvidence'])->name('admin-panel.evidence.terminate');
-        Route::put('/evidence/return/{id}', [EvidenceController::class, 'returnEvidence'])->name('admin-panel.evidence.return');
-        Route::resource('evidence', EvidenceController::class, ['as' => 'admin-panel']);
     });
 });
 

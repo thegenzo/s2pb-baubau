@@ -97,24 +97,26 @@ $label = [
                                                         </button>
                                                     </form>
 													@if ($evidence->status == 'detained')
-													<div>
-														<form action="{{ route('admin-panel.evidence.return', $evidence->id) }}" method="POST" class="d-inline return-evidence">
-															@csrf
-															@method('PUT')
-															<button class="btn btn-sm btn-success mt-1" type="submit"
-																data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Kembalikan BB">
-																<i class="fas fa-undo"></i>
-															</button>
-														</form>
-														<form action="{{ route('admin-panel.evidence.terminate', $evidence->id) }}" method="POST" class="d-inline terminate-evidence">
-															@csrf
-															@method('PUT')
-															<button class="btn btn-sm btn-danger mt-1" type="submit"
-																data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Musnahkan BB">
-																<i class="fas fa-bomb"></i>
-															</button>
-														</form>
-													</div>
+														@if(auth()->user()->level == 'admin')
+															<div>
+																<form action="{{ route('admin-panel.evidence.return', $evidence->id) }}" method="POST" class="d-inline return-evidence">
+																	@csrf
+																	@method('PUT')
+																	<button class="btn btn-sm btn-success mt-1" type="submit"
+																		data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Kembalikan BB">
+																		<i class="fas fa-undo"></i>
+																	</button>
+																</form>
+																<form action="{{ route('admin-panel.evidence.terminate', $evidence->id) }}" method="POST" class="d-inline terminate-evidence">
+																	@csrf
+																	@method('PUT')
+																	<button class="btn btn-sm btn-danger mt-1" type="submit"
+																		data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Musnahkan BB">
+																		<i class="fas fa-bomb"></i>
+																	</button>
+																</form>
+															</div>
+														@endif
 													@endif
 												</td>
 											</tr>

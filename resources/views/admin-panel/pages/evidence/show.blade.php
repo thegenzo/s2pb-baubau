@@ -98,13 +98,15 @@ $label = [
                                 </div>
                             @endforelse
                         </div>
-                        <div class="d-flex justify-content-center mt-3">
-                            @if ($evidence->status == 'detained')
-                            <a href="{{ route('admin-panel.photos.index', $evidence->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-image"></i> Tambah Foto BB</a>
-                            @else
-                            <p>Tidak bisa menambahkan foto BB karena BB telah {{ $label[$evidence->status] }}</p>
-                            @endif
-                        </div>
+                        @if(auth()->user()->level == 'admin')
+                            <div class="d-flex justify-content-center mt-3">
+                                @if ($evidence->status == 'detained')
+                                    <a href="{{ route('admin-panel.photos.index', $evidence->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-image"></i> Tambah Foto BB</a>
+                                @else
+                                    <p>Tidak bisa menambahkan foto BB karena BB telah {{ $label[$evidence->status] }}</p>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="card">
@@ -134,13 +136,15 @@ $label = [
                                 @endforelse
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center">
-                            @if ($evidence->status == 'detained')
-                            <a href="{{ route('admin-panel.transaction.index', $evidence->id) }}" class="btn btn-sm btn-success"><i class="fa fa-file"></i> Tambah Transaksi BB</a>
-                            @else
-                            <p>Tidak bisa menambahkan transaksi BB karena BB telah {{ $label[$evidence->status] }}</p>
-                            @endif
-                        </div>
+                        @if(auth()->user()->level == 'admin')
+                            <div class="d-flex justify-content-center">
+                                @if ($evidence->status == 'detained')
+                                    <a href="{{ route('admin-panel.transaction.index', $evidence->id) }}" class="btn btn-sm btn-success"><i class="fa fa-file"></i> Tambah Transaksi BB</a>
+                                @else
+                                    <p>Tidak bisa menambahkan transaksi BB karena BB telah {{ $label[$evidence->status] }}</p>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
