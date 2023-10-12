@@ -92,37 +92,8 @@ $auth = [
                                             <span class="d-block text-dark">Messages & Emails</span>
                                         </div>
                                     </a>
-                                    <a href="app-notes.html"
-                                        class="py-8 px-7 d-flex align-items-center">
-                                        <span
-                                            class="d-flex align-items-center justify-content-center bg-light rounded-1 p-6">
-                                            <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/svgs/icon-tasks.svg"
-                                                alt="" width="24" height="24">
-                                        </span>
-                                        <div class="w-75 d-inline-block v-middle ps-3">
-                                            <h6 class="mb-1 bg-hover-primary fw-semibold">My Task</h6>
-                                            <span class="d-block text-dark">To-do and Daily Tasks</span>
-                                        </div>
-                                    </a>
                                 </div>
                                 <div class="d-grid py-4 px-7 pt-8">
-                                    <div
-                                        class="upgrade-plan bg-light-primary position-relative overflow-hidden rounded-4 p-4 mb-9">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <h5 class="fs-4 mb-3 w-50 fw-semibold text-dark">Unlimited
-                                                    Access</h5>
-                                                <button
-                                                    class="btn btn-primary text-white">Upgrade</button>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="m-n4">
-                                                    <img src="{{ asset('panel-assets/dist/images/backgrounds/unlimited-bg.png') }}"
-                                                        alt="" class="w-100">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit" class="btn btn-outline-primary">Log Out</button>
