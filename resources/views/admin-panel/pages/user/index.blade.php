@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="{{ asset('panel-assets/dist/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
 @endpush
 
+@php
+	$auth = [
+		'admin' => 'Admin',
+		'user' => 'User'
+	];
+
+	$label = [
+		'admin' => 'primary',
+		'user' => 'danger'
+	];
+@endphp
+
 @section('content')
     <div class="container-fluid">
         <div class="card bg-light-info shadow-none position-relative overflow-hidden">
@@ -43,7 +55,7 @@
 										<tr>
 											<th class="text-center">No</th>
 											<th>Nama</th>
-											<th>Level</th>
+											<th class="text-center">Level</th>
 											<th class="text-center">Avatar</th>
 											<th>Email</th>
 											<th class="text-center">Action</th>
@@ -54,7 +66,9 @@
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td>{{ $user->name }}</td>
-												<td>{{ $user->level }}</td>
+												<td class="text-center">
+													<span class="badge bg-{{ $label[$user->level] }}">{{ $auth[$user->level] }}</span>
+												</td>
 												<td class="text-center">
 													<img src="{{ $user->avatar }}" alt="" width="100px">
 												</td>

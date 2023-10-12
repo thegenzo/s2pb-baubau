@@ -43,6 +43,7 @@
 										<tr>
 											<th class="text-center">No</th>
 											<th>Nama</th>
+											<th class="text-center">No. Identitas</th>
 											<th class="text-center">Tanggal Lahir</th>
 											<th>Tempat Lahir</th>
 											<th class="text-center">JK</th>
@@ -55,6 +56,7 @@
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td>{{ $criminal->name }}</td>
+												<td class="text-center">{{ $criminal->identification_number }}</td>
 												<td class="text-center">{{ \Carbon\Carbon::parse($criminal->date_of_birth)->locale('id')->isoFormat('LL') }}</td>
 												<td>{{ $criminal->place_of_birth }}</td>
 												<td class="text-center">{{ $criminal->gender }}</td>

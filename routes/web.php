@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScanBarcodeController;
 use App\Http\Controllers\Web\CriminalPerpetratorController;
 use App\Http\Controllers\Web\CriteriaController;
 use App\Http\Controllers\Web\DashboardController;
@@ -50,12 +51,16 @@ Route::middleware('auth')->group(function () {
     
             Route::put('/evidence/terminate/{id}', [EvidenceController::class, 'terminateEvidence'])->name('admin-panel.evidence.terminate');
             Route::put('/evidence/return/{id}', [EvidenceController::class, 'returnEvidence'])->name('admin-panel.evidence.return');
+
+            Route::get('/scan', [ScanBarcodeController::class, 'index'])->name('admin-panel.scan-barcode.index');
         });
 
         Route::group(['middleware' => ['auth', 'ceklevel:admin,user']], function () {
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin-panel.dashboard');
             Route::resource('criminal', CriminalPerpetratorController::class, ['as' => 'admin-panel']);
             Route::resource('criteria', CriteriaController::class, ['as' => 'admin-panel']);
+
+            Route::get('/evidence/print/{id}', [EvidenceController::class, 'print'])->name('admin-panel.evidence.print');
             Route::resource('evidence', EvidenceController::class, ['as' => 'admin-panel']);
         });
     });

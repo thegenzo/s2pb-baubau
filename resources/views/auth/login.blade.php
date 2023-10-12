@@ -23,16 +23,6 @@
 </head>
 
 <body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
-            alt="loader" class="lds-ripple img-fluid" />
-    </div>
-    <!-- Preloader -->
-    <div class="preloader">
-        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
-            alt="loader" class="lds-ripple img-fluid" />
-    </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -44,8 +34,8 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="index.html" class="text-nowrap logo-img text-center d-block mb-5 w-100">
-                                    <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg"
-                                        width="180" alt="">
+                                    <img src="{{ asset('panel-assets/dist/images/logo-primary.png') }}"
+                                        width="90" class="rounded" alt="">
                                 </a>
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf

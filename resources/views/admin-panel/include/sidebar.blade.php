@@ -2,12 +2,12 @@
 <aside class="left-sidebar">
 	<!-- Sidebar scroll-->
 	<div>
-		<div class="brand-logo d-flex align-items-center justify-content-between">
-			<a href="index.html" class="text-nowrap logo-img">
-				<img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg"
-					class="dark-logo" width="180" alt="" />
-				<img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/light-logo.svg"
-					class="light-logo" width="180" alt="" />
+		<div class="brand-logo d-flex align-items-center justify-content-center">
+			<a href="#" class="text-nowrap logo-img">
+				<img src="{{ asset('panel-assets/dist/images/logo-primary.png') }}"
+					class="dark-logo rounded" width="38" alt="" />
+				{{-- <img src="{{ asset('panel-assets/dist/images/logo-primary.png') }}"
+					class="light-logo rounded" width="38" alt="" /> --}}
 			</a>
 			<div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
 				<i class="ti ti-x fs-8 text-muted"></i>
@@ -66,6 +66,14 @@
 							<i class="ti ti-archive-filled"></i>
 						</span>
 						<span class="hide-menu">Barang Bukti</span>
+					</a>
+				</li>
+				<li class="sidebar-item {{ Route::is('admin-panel.scan-barcode.*') ? 'selected' : '' }}">
+					<a class="sidebar-link" href="{{ route('admin-panel.scan-barcode.index') }}" aria-expanded="false">
+						<span>
+							<i class="ti ti-scan"></i>
+						</span>
+						<span class="hide-menu">Scan Barcode</span>
 					</a>
 				</li>
 			</ul>

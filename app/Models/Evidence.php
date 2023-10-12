@@ -52,6 +52,6 @@ class Evidence extends Model
     public function getBarcodeAttribute($value, $w, $h)
     {
         $dns1d = new DNS1D();
-        return $dns1d->getBarcodeSVG($value, 'UPCA', $w, $h);
+        return $dns1d->getBarcodeSVG($value, 'C128', $w, $h);
     }   
 }

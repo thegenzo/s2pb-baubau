@@ -191,7 +191,7 @@ $label = [
 			event.preventDefault();
 			Swal.fire({
 				title: 'Musnahkan Barang Bukti?',
-				icon: 'warning',
+				icon: 'bomb',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',

@@ -16,10 +16,10 @@ $auth = [
             </li>
         </ul>
         <div class="d-block d-lg-none">
-            <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/dark-logo.svg"
-                class="dark-logo" width="180" alt="" />
-            <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/light-logo.svg"
-                class="light-logo" width="180" alt="" />
+            <img src="{{ asset('panel-assets/dist/images/logo-primary.png') }}"
+                class="dark-logo rounded" width="50" alt="" />
+            <img src="{{ asset('panel-assets/dist/images/logo-primary.png') }}"
+                class="light-logo rounded" width="50" alt="" />
         </div>
         <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -30,12 +30,6 @@ $auth = [
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <div class="d-flex align-items-center justify-content-between">
-                <a href="javascript:void(0)"
-                    class="nav-link d-flex d-lg-none align-items-center justify-content-center"
-                    type="button" data-bs-toggle="offcanvas" data-bs-target="#mobilenavbar"
-                    aria-controls="offcanvasWithBothOptions">
-                    <i class="ti ti-align-justified fs-7"></i>
-                </a>
                 <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-center">
                     <li class="nav-item dropdown">
                         <a class="nav-link pe-0" href="javascript:void(0)" id="drop1"
@@ -66,7 +60,7 @@ $auth = [
                                         </p>
                                     </div>
                                 </div>
-                                <div class="message-body">
+                                {{-- <div class="message-body">
                                     <a href="page-user-profile.html"
                                         class="py-8 px-7 mt-8 d-flex align-items-center">
                                         <span
@@ -92,7 +86,7 @@ $auth = [
                                             <span class="d-block text-dark">Messages & Emails</span>
                                         </div>
                                     </a>
-                                </div>
+                                </div> --}}
                                 <div class="d-grid py-4 px-7 pt-8">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf

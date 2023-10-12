@@ -158,7 +158,9 @@ class EvidenceController extends Controller
      */
     public function destroy(Evidence $evidence)
     {
-        $evidence->evidence_transaction()->delete();
+        if($evidence->evidence_transaction()->count() > 1) {
+            return redirect()->back()->with('failed', 'Barang Bukti ini telah memiliki riwayat transaksi lebih dari 2 kali');
+        }
 
         foreach ($evidence->evidence_photo()->get() as $data) {
             File::delete($data->image);
@@ -170,6 +172,12 @@ class EvidenceController extends Controller
         $evidence->delete();
 
         return back()->with('success', 'Data Barang Bukti berhasil dihapus');
+    }
+
+    public function print($id)
+    {
+        $evidence = Evidence::find($id);
+        return view('admin-panel.pages.evidence.print', compact('evidence'));
     }
 
     public function returnEvidence($id)

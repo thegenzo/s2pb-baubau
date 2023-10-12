@@ -78,6 +78,8 @@ $label = [
 						<h5 class="text-muted">Lokasi Penyimpanan</h5>
                         <h5>{{ $evidence->storage_location }}</h5>
 						<hr>
+                        <a href="{{ route('admin-panel.evidence.index') }}" class="btn btn-warning mx-2">Kembali</a>
+                        <a href="{{ route('admin-panel.evidence.print', $evidence->id) }}" class="btn btn-danger mx-2" target="_blank">Cetak</a>
                     </div>
                 </div>
             </div>
@@ -148,7 +150,6 @@ $label = [
                     </div>
                 </div>
             </div>
-            <a href="{{ route('admin-panel.evidence.index') }}" class="btn btn-warning mx-2">Kembali</a>
         </div>
     </div>
 @endsection
