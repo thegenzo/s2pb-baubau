@@ -44,7 +44,12 @@
 	<script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
 	<script type="text/javascript">
 		function onScanSuccess(decodedText, decodedResult) {
-			console.log(`Code scanned = ${decodedText}`, decodedResult);
+			// console.log(`Code scanned = ${decodedText}`, decodedResult);
+
+			// Stop the scanner
+			// html5QrcodeScanner.stop();
+
+			// Redirect to detail evidence page
 			window.location.href = `/admin-panel/scan/${decodedText}`;
 		}
 		var html5QrcodeScanner = new Html5QrcodeScanner(

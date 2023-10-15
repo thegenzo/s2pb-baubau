@@ -78,7 +78,7 @@
 											</tr>
 										@empty
 											<tr>
-												<td colspan="6" class="text-center">Data Pelaku Tindak Pidana Kosong</td>
+												<td colspan="8" class="text-center">Data Pelaku Tindak Pidana Kosong</td>
 											</tr>
 										@endforelse
 									</tbody>
