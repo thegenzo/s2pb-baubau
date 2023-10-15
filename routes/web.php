@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ScanBarcodeController;
+use App\Http\Controllers\Web\ScanBarcodeController;
 use App\Http\Controllers\Web\CriminalPerpetratorController;
 use App\Http\Controllers\Web\CriteriaController;
 use App\Http\Controllers\Web\DashboardController;
@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/evidence/return/{id}', [EvidenceController::class, 'returnEvidence'])->name('admin-panel.evidence.return');
 
             Route::get('/scan', [ScanBarcodeController::class, 'index'])->name('admin-panel.scan-barcode.index');
+            Route::get('/scan/{register}', [ScanBarcodeController::class, 'show'])->name('admin-panel.scan-barcode.show');
         });
 
         Route::group(['middleware' => ['auth', 'ceklevel:admin,user']], function () {
