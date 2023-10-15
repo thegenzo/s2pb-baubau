@@ -106,13 +106,13 @@
                     data: [{{ $detainedEvidence }}, {{ $returnedEvidence }}, {{ $terminatedEvidence }}],
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 99, 132, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
                     ],
                     borderColor: [
                         'rgb(54, 162, 235)',
-                        'rgb(255, 99, 132)',
                         'rgb(75, 192, 192)',
+                        'rgb(255, 99, 132)',
                     ],
                     borderWidth: 1
                 }]
