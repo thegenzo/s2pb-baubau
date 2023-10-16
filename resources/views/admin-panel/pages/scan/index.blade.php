@@ -46,8 +46,8 @@
 		function onScanSuccess(decodedText, decodedResult) {
 			// console.log(`Code scanned = ${decodedText}`, decodedResult);
 
-			// Stop the scanner
-			// html5QrcodeScanner.stop();
+			// Clear the existing canvas
+			// html5QrcodeScanner.clear();
 
 			// Redirect to detail evidence page
 			window.location.href = `/admin-panel/scan/${decodedText}`;

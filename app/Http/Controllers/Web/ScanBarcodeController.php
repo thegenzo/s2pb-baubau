@@ -15,7 +15,7 @@ class ScanBarcodeController extends Controller
     
     public function show($register)
     {
-        $evidence = Evidence::where('register_number', $register)->first();
+        $evidence = Evidence::where('register_number', $register)->firstOrFail();
 
         return view('admin-panel.pages.scan.show', compact('evidence'));
     }

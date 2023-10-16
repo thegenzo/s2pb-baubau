@@ -52,8 +52,7 @@ Route::middleware('auth')->group(function () {
             Route::put('/evidence/terminate/{id}', [EvidenceController::class, 'terminateEvidence'])->name('admin-panel.evidence.terminate');
             Route::put('/evidence/return/{id}', [EvidenceController::class, 'returnEvidence'])->name('admin-panel.evidence.return');
 
-            Route::get('/scan', [ScanBarcodeController::class, 'index'])->name('admin-panel.scan-barcode.index');
-            Route::get('/scan/{register}', [ScanBarcodeController::class, 'show'])->name('admin-panel.scan-barcode.show');
+
         });
 
         Route::group(['middleware' => ['auth', 'ceklevel:admin,user']], function () {
@@ -63,6 +62,9 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/evidence/print/{id}', [EvidenceController::class, 'print'])->name('admin-panel.evidence.print');
             Route::resource('evidence', EvidenceController::class, ['as' => 'admin-panel']);
+
+            Route::get('/scan', [ScanBarcodeController::class, 'index'])->name('admin-panel.scan-barcode.index');
+            Route::get('/scan/{register}', [ScanBarcodeController::class, 'show'])->name('admin-panel.scan-barcode.show');
         });
     });
 });
