@@ -45,7 +45,7 @@
         </div>
 		<section class="datatables">
 			<div class="row">
-				<div class="col-12">
+				<div class="col-sm-12">
 					<div class="card">
 						<div class="card-body">
 							<a href="{{ route('admin-panel.user.create') }}" class="btn btn-secondary mb-3">Tambah User</a>
