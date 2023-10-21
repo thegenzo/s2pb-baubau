@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Oct 2023 05:31:32 GMT -->
-
 <head>
     <!--  Title -->
     <title>@yield('title') &dash; SP2B Baubau</title>
@@ -17,24 +15,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!--  Favicon -->
     <link rel="shortcut icon" type="image/png"
-        href="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico" />
-    
+        href="{{ asset('panel-assets/dist/images/logo-primary.ico') }}" />
+
     @include('admin-panel.include.style')
 
     @stack('addon-style')
 </head>
 
 <body>
-    {{-- <!-- Preloader -->
-    <div class="preloader">
-        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
-            alt="loader" class="lds-ripple img-fluid" />
-    </div>
     <!-- Preloader -->
     <div class="preloader">
-        <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
-            alt="loader" class="lds-ripple img-fluid" />
-    </div> --}}
+        <img src="{{ asset('panel-assets/dist/images/logo-primary.png') }}"
+            alt="loader" class="lds-ripple img-fluid" style="border-radius: 5px;" />
+    </div>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
@@ -43,106 +36,10 @@
         <div class="body-wrapper">
             @include('admin-panel.include.header')
 
-			@yield('content')
+            @yield('content')
         </div>
         <div class="dark-transparent sidebartoggler"></div>
         <div class="dark-transparent sidebartoggler"></div>
-    </div>
-    <!--  Shopping Cart -->
-    <div class="offcanvas offcanvas-end shopping-cart" tabindex="-1" id="offcanvasRight"
-        aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header py-4">
-            <h5 class="offcanvas-title fs-5 fw-semibold" id="offcanvasRightLabel">Shopping Cart</h5>
-            <span class="badge bg-primary rounded-4 px-3 py-1 lh-sm">5 new</span>
-        </div>
-        <div class="offcanvas-body h-100 px-4 pt-0" data-simplebar>
-            <ul class="mb-0">
-                <li class="pb-7">
-                    <div class="d-flex align-items-center">
-                        <img src="../../dist/images/products/product-1.jpg" width="95" height="75"
-                            class="rounded-1 me-9 flex-shrink-0" alt="" />
-                        <div>
-                            <h6 class="mb-1">Supreme toys cooker</h6>
-                            <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
-                            <div class="d-flex align-items-center justify-content-between mt-2">
-                                <h6 class="fs-2 fw-semibold mb-0 text-muted">$250</h6>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn border-0 round-20 minus p-0 bg-light-success text-success "
-                                        type="button" id="add1"> - </button>
-                                    <input type="text"
-                                        class="form-control round-20 bg-transparent text-muted fs-2 border-0  text-center qty"
-                                        placeholder="" aria-label="Example text with button addon"
-                                        aria-describedby="add1" value="1" />
-                                    <button class="btn text-success bg-light-success  p-0 round-20 border-0 add"
-                                        type="button" id="addo2"> + </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="pb-7">
-                    <div class="d-flex align-items-center">
-                        <img src="../../dist/images/products/product-2.jpg" width="95" height="75"
-                            class="rounded-1 me-9 flex-shrink-0" alt="" />
-                        <div>
-                            <h6 class="mb-1">Supreme toys cooker</h6>
-                            <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
-                            <div class="d-flex align-items-center justify-content-between mt-2">
-                                <h6 class="fs-2 fw-semibold mb-0 text-muted">$250</h6>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn border-0 round-20 minus p-0 bg-light-success text-success "
-                                        type="button" id="add2"> - </button>
-                                    <input type="text"
-                                        class="form-control round-20 bg-transparent text-muted fs-2 border-0  text-center qty"
-                                        placeholder="" aria-label="Example text with button addon"
-                                        aria-describedby="add2" value="1" />
-                                    <button class="btn text-success bg-light-success  p-0 round-20 border-0 add"
-                                        type="button" id="addon34"> + </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="pb-7">
-                    <div class="d-flex align-items-center">
-                        <img src="../../dist/images/products/product-3.jpg" width="95" height="75"
-                            class="rounded-1 me-9 flex-shrink-0" alt="" />
-                        <div>
-                            <h6 class="mb-1">Supreme toys cooker</h6>
-                            <p class="mb-0 text-muted fs-2">Kitchenware Item</p>
-                            <div class="d-flex align-items-center justify-content-between mt-2">
-                                <h6 class="fs-2 fw-semibold mb-0 text-muted">$250</h6>
-                                <div class="input-group input-group-sm w-50">
-                                    <button class="btn border-0 round-20 minus p-0 bg-light-success text-success "
-                                        type="button" id="add3"> - </button>
-                                    <input type="text"
-                                        class="form-control round-20 bg-transparent text-muted fs-2 border-0  text-center qty"
-                                        placeholder="" aria-label="Example text with button addon"
-                                        aria-describedby="add3" value="1" />
-                                    <button class="btn text-success bg-light-success  p-0 round-20 border-0 add"
-                                        type="button" id="addon3"> + </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="align-bottom">
-                <div class="d-flex align-items-center pb-7">
-                    <span class="text-dark fs-3">Sub Total</span>
-                    <div class="ms-auto">
-                        <span class="text-dark fw-semibold fs-3">$2530</span>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center pb-7">
-                    <span class="text-dark fs-3">Total</span>
-                    <div class="ms-auto">
-                        <span class="text-dark fw-semibold fs-3">$6830</span>
-                    </div>
-                </div>
-                <a href="eco-checkout.html" class="btn btn-outline-primary w-100">Go to shopping cart</a>
-            </div>
-        </div>
     </div>
 
     <!--  Mobilenavbar -->
@@ -152,8 +49,7 @@
             <div class="offcanvas-header justify-content-between">
                 <img src="https://demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/dist/images/logos/favicon.ico"
                     alt="" class="img-fluid">
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body profile-dropdown mobile-navbar" data-simplebar="" data-simplebar>
                 <ul id="sidebarnav">
@@ -418,37 +314,73 @@
             </div>
         </div>
     </div>
-	@include('admin-panel.include.script')
 
-	@stack('addon-script')
+    <!-- --------------------------------------------------- -->
+    <!-- Customizer -->
+    <!-- --------------------------------------------------- -->
+    <button class="btn btn-primary p-3 rounded-circle d-flex align-items-center justify-content-center customizer-btn"
+        type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+        aria-controls="offcanvasExample">
+        <i class="ti ti-settings fs-7" data-bs-toggle="tooltip" data-bs-placement="top"
+            data-bs-title="Settings"></i>
+    </button>
+    <div class="offcanvas offcanvas-end customizer" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel" data-simplebar="">
+        <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+            <h4 class="offcanvas-title fw-semibold" id="offcanvasExampleLabel">Settings</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-4">
+            <div class="theme-option pb-4">
+                <h6 class="fw-semibold fs-4 mb-1">Theme Option</h6>
+                <div class="d-flex align-items-center gap-3 my-3">
+                    <button type="button" onclick="toggleTheme('{{ asset('panel-assets/dist/css/style-aqua.min.css') }}')"
+                        class="rounded-2 p-9 customizer-box hover-img d-flex align-items-center gap-2 light-theme text-dark">
+                        <i class="ti ti-brightness-up fs-7 text-primary"></i>
+                        <span class="text-dark">Light</span>
+                    </button>
+                    <button type="button" onclick="toggleTheme('{{ asset('panel-assets/dist/css/style-dark.min.css') }}')"
+                        class="rounded-2 p-9 customizer-box hover-img d-flex align-items-center gap-2 dark-theme text-dark">
+                        <i class="ti ti-moon fs-7 "></i>
+                        <span class="text-dark">Dark</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ---------------------------------------------- -->
+    <!-- Customizer -->
+    <!-- ---------------------------------------------- -->
 
-	@if($message = Session::get('success'))
-    <script type="text/javascript">
-        $(document).ready(function() {
-            Swal.fire({
-                title: "Sukses!",
-                html: "{{ $message }}",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success",
-                icon: "success"
-            });
-        })
-    </script>
+    @include('admin-panel.include.script')
+
+    @stack('addon-script')
+
+    @if ($message = Session::get('success'))
+        <script type="text/javascript">
+            $(document).ready(function() {
+                Swal.fire({
+                    title: "Sukses!",
+                    html: "{{ $message }}",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-success",
+                    icon: "success"
+                });
+            })
+        </script>
     @elseif($message = Session::get('failed'))
-    <script type="text/javascript">
-        $(document).ready(function() {
-            Swal.fire({
-                title: "Gagal!",
-                html: "{{ $message }}",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-danger",
-                icon: "error"
-            });
-        })
-    </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                Swal.fire({
+                    title: "Gagal!",
+                    html: "{{ $message }}",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-danger",
+                    icon: "error"
+                });
+            })
+        </script>
     @endif
 </body>
-
-<!-- Mirrored from demos.adminmart.com/premium/bootstrap/modernize-bootstrap/package/html/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 06 Oct 2023 05:32:07 GMT -->
 
 </html>
