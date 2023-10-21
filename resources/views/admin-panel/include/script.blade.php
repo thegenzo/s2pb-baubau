@@ -29,6 +29,6 @@
         var sheets = document.getElementById("themeColors");
         sheets.href = value;
 
-        console.log('new theme selected : ' + value);
+        // console.log('new theme selected : ' + value);
     }
 </script>
