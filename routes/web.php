@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
             Route::resource('criminal', CriminalPerpetratorController::class, ['as' => 'admin-panel']);
             Route::resource('criteria', CriteriaController::class, ['as' => 'admin-panel']);
 
+            Route::get('/evidence/returned', [EvidenceController::class, 'returned'])->name('admin-panel.evidence.returned');
+            Route::get('/evidence/terminated', [EvidenceController::class, 'terminated'])->name('admin-panel.evidence.terminated');
             Route::get('/evidence/print/{id}', [EvidenceController::class, 'print'])->name('admin-panel.evidence.print');
             Route::resource('evidence', EvidenceController::class, ['as' => 'admin-panel']);
 

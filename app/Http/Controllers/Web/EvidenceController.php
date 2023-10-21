@@ -18,9 +18,23 @@ class EvidenceController extends Controller
      */
     public function index()
     {
-        $evidences = Evidence::latest()->get();
+        $evidences = Evidence::where('status', 'detained')->latest()->get();
 
         return view('admin-panel.pages.evidence.index', compact('evidences'));
+    }
+    
+    public function returned()
+    {
+        $evidences = Evidence::where('status', 'returned')->latest()->get();
+
+        return view('admin-panel.pages.evidence.returned', compact('evidences'));
+    }
+    
+    public function terminated()
+    {
+        $evidences = Evidence::where('status', 'terminated')->latest()->get();
+
+        return view('admin-panel.pages.evidence.terminated', compact('evidences'));
     }
 
     /**
