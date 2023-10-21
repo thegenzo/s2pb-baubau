@@ -43,12 +43,6 @@ Route::middleware('auth')->group(function () {
                 Route::delete('/evidence/photos/{id}', 'destroy')->name('admin-panel.photos.destroy');
             });
     
-            Route::controller(EvidenceTransactionController::class)->group(function () {
-                Route::get('/evidence/transaction/{id}', 'index')->name('admin-panel.transaction.index');
-                Route::post('/evidence/transaction/{id}', 'store')->name('admin-panel.transaction.store');
-                Route::delete('/evidence/transaction/{id}', 'destroy')->name('admin-panel.transaction.destroy');
-            });
-    
             Route::put('/evidence/terminate/{id}', [EvidenceController::class, 'terminateEvidence'])->name('admin-panel.evidence.terminate');
             Route::put('/evidence/return/{id}', [EvidenceController::class, 'returnEvidence'])->name('admin-panel.evidence.return');
 
@@ -64,6 +58,13 @@ Route::middleware('auth')->group(function () {
             Route::get('/evidence/terminated', [EvidenceController::class, 'terminated'])->name('admin-panel.evidence.terminated');
             Route::get('/evidence/print/{id}', [EvidenceController::class, 'print'])->name('admin-panel.evidence.print');
             Route::resource('evidence', EvidenceController::class, ['as' => 'admin-panel']);
+
+            Route::controller(EvidenceTransactionController::class)->group(function () {
+                Route::get('/evidence/transaction/{id}', 'index')->name('admin-panel.transaction.index');
+                Route::post('/evidence/transaction/{id}/in', 'evidenceIn')->name('admin-panel.transaction.in');
+                Route::post('/evidence/transaction/{id}/out', 'evidenceOut')->name('admin-panel.transaction.out');
+                Route::delete('/evidence/transaction/{id}', 'destroy')->name('admin-panel.transaction.destroy');
+            });
 
             Route::get('/scan', [ScanBarcodeController::class, 'index'])->name('admin-panel.scan-barcode.index');
             Route::get('/scan/{register}', [ScanBarcodeController::class, 'show'])->name('admin-panel.scan-barcode.show');

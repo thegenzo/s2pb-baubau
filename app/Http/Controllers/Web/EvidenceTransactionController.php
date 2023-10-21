@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\EvidenceTransaction;
 use App\Http\Controllers\Controller;
 use App\Models\Evidence;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Validator;
 
 class EvidenceTransactionController extends Controller
@@ -26,19 +27,14 @@ class EvidenceTransactionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function store(Request $request, $id)
+    public function evidenceIn(Request $request, $id)
     {
         $rules = [
-            'transaction_date'              => 'required|date',
-            'transaction_type'              => 'required',
-            'notes'                         => 'required',
+            'notes' => 'required',
         ];
 
         $messages = [
-            'transaction_date.required'                  => 'Tanggal Transaksi wajib diisi',
-            'transaction_date.date'                      => 'Tanggal Transaksi harus berformat tanggal',
-            'transaction_type.required'                  => 'Tipe Transaksi wajib diisi',
-            'notes.required'                             => 'Keterangan wajib diisi',
+            'notes.required'  => 'Keterangan wajib diisi',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -50,11 +46,41 @@ class EvidenceTransactionController extends Controller
         $evidence = Evidence::find($id);
         $data = $request->all();
         $data['evidence_id'] = $evidence->id;
+        $data['transaction_date'] = Date::now();
+        $data['transaction_type'] = 'in';
         $transaction = EvidenceTransaction::create($data);
 
-        UserActivity::addToLog('Menambahkan data transaksi baru pada BB ' . $evidence->name . ' : ' . $transaction->transaction_type . ' ' . '. PS : ' . $transaction->notes);
+        UserActivity::addToLog('Menambahkan data transaksi BB Masuk pada BB : ' . $evidence->name . ' : ' . $transaction->transaction_type . ' ' . '. PS : ' . $transaction->notes);
 
-        return redirect()->back()->with('success', 'Data Transaksi BB berhasil ditambahkan');
+        return redirect()->back()->with('success', 'Transaksi BB Masuk berhasil ditambahkan');
+    }
+
+    public function evidenceOut(Request $request, $id)
+    {
+        $rules = [
+            'notes' => 'required',
+        ];
+
+        $messages = [
+            'notes.required'  => 'Keterangan wajib diisi',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+
+        $evidence = Evidence::find($id);
+        $data = $request->all();
+        $data['evidence_id'] = $evidence->id;
+        $data['transaction_date'] = Date::now();
+        $data['transaction_type'] = 'out';
+        $transaction = EvidenceTransaction::create($data);
+
+        UserActivity::addToLog('Menambahkan data transaksi BB Keluar pada BB : ' . $evidence->name . ' : ' . $transaction->transaction_type . ' ' . '. PS : ' . $transaction->notes);
+
+        return redirect()->back()->with('success', 'Transaksi BB Keluar berhasil ditambahkan');
     }
 
     /**
