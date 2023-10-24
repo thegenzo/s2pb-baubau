@@ -13,8 +13,8 @@ class Criteria extends Model
         'name'
     ];
 
-    public function evidence()
+    public function criminal_perpetrator()
     {
-        return $this->hasMany(Evidence::class);
+        return $this->hasMany(CriminalPerpetrator::class);
     }
 }

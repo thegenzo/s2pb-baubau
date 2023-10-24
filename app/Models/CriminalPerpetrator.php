@@ -11,12 +11,18 @@ class CriminalPerpetrator extends Model
 
     protected $fillable = [
         'name',
+        'criteria_id',
         'date_of_birth',
         'place_of_birth',
         'gender',
         'address',
         'identification_number'
     ];
+
+    public function criteria()
+    {
+        return $this->belongsTo(CriminalPerpetrator::class);
+    }
 
     public function evidence()
     {

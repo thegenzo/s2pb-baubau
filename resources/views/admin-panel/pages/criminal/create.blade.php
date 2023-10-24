@@ -61,6 +61,15 @@
                                 <input type="text" name="name" id="name" class="form-control"
                                     value="{{ old('name') }}">
                             </div>
+                            <div class="form-group mb-3">
+                                <label for="criteria_id">Kriteria Tindak Pidana <span class="text-danger">*</span></label>
+                                <select name="criteria_id" id="criteria_id" class="select2 form-control" style="width: 100%; height: 36px">
+									<option value="" selected hidden>--- Pilih Kriteria Tindak Pidana ---</option>
+									@foreach (\App\Models\Criteria::all() as $criteria)
+                                    <option value="{{ $criteria->id }}" {{ old('criteria_id') == $criteria->id ? 'selected' : '' }}>{{ $criteria->name }}</option>
+                                    @endforeach
+								</select>
+                            </div>
                             <div class="row">
 								<div class="col-md-6 col-sm-12">
 									<div class="form-group mb-3">

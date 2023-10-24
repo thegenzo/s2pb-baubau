@@ -15,7 +15,7 @@ class CriminalPerpetratorController extends Controller
      */
     public function index()
     {
-        $criminals = CriminalPerpetrator::all();
+        $criminals = CriminalPerpetrator::with('criteria')->get();
 
         return view('admin-panel.pages.criminal.index', compact('criminals'));
     }
@@ -35,6 +35,7 @@ class CriminalPerpetratorController extends Controller
     {
         $rules = [
             'name'                  => 'required',
+            'criteria_id'           => 'required',
             'date_of_birth'         => 'required|date',
             'place_of_birth'        => 'required',
             'gender'                => 'required',
@@ -44,6 +45,7 @@ class CriminalPerpetratorController extends Controller
 
         $messages = [
             'name.required'                     => 'Nama pelaku tindak pidana wajib diisi',
+            'criteria_id.required'              => 'Kriteria tindak pidana wajib diisi',
             'date_of_birth.required'            => 'Tanggal lahir pelaku tindak pidana wajib diisi',
             'date_of_birth.date'                => 'Tanggal lahir pelaku tindak pidana harus berupa tanggal',
             'gender.required'                   => 'Jenis kelamin pelaku tindak pidana wajib diisi',
@@ -91,6 +93,7 @@ class CriminalPerpetratorController extends Controller
 
         $rules = [
             'name'                  => 'required',
+            'criteria_id'           => 'required',
             'date_of_birth'         => 'required|date',
             'place_of_birth'        => 'required',
             'gender'                => 'required',
@@ -100,6 +103,7 @@ class CriminalPerpetratorController extends Controller
 
         $messages = [
             'name.required'                     => 'Nama pelaku tindak pidana wajib diisi',
+            'criteria_id.required'              => 'Kriteria tindak pidana wajib diisi',
             'date_of_birth.required'            => 'Tanggal lahir pelaku tindak pidana wajib diisi',
             'date_of_birth.date'                => 'Tanggal lahir pelaku tindak pidana harus berupa tanggal',
             'gender.required'                   => 'Jenis kelamin pelaku tindak pidana wajib diisi',

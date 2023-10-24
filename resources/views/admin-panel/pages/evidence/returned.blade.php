@@ -55,7 +55,7 @@ $label = [
 									<thead>
 										<tr>
 											<th class="text-center">No</th>
-											<th class="text-center">Barcode</th>
+											<th class="text-center">No. Registrasi</th>
 											<th>Pemilik Barang</th>
 											<th class="text-center">Kriteria</th>
 											<th>Nama BB</th>
@@ -69,7 +69,7 @@ $label = [
 										@forelse ($evidences as $evidence)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
-												<td class="text-center">{!! $evidence->getBarcodeAttribute($evidence->register_number, 2.5, 80) !!}</td>
+												<td class="text-center">{{ $evidence->register_number }}</td>
 												<td>{{ $evidence->criminal_perpetrator->name }}</td>
 												<td class="text-center">{{ $evidence->criteria->name }}</td>
 												<td>{{ $evidence->name }}</td>

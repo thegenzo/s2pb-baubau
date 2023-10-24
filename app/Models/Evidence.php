@@ -13,7 +13,6 @@ class Evidence extends Model
 
     protected $fillable = [
         'criminal_perpetrator_id',
-        'criteria_id',
         'register_number',
         'name',
         'amount',
@@ -27,11 +26,6 @@ class Evidence extends Model
     public function criminal_perpetrator()
     {
         return $this->belongsTo(CriminalPerpetrator::class);
-    }
-
-    public function criteria()
-    {
-        return $this->belongsTo(Criteria::class);
     }
 
     public function evidence_photo()

@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('evidence', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(CriminalPerpetrator::class)->constrained();
-            $table->foreignIdFor(Criteria::class)->constrained();
             $table->string('register_number');
             $table->string('name');
             $table->integer('amount');
