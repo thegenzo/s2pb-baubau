@@ -38,8 +38,6 @@
 
             @yield('content')
         </div>
-        <div class="dark-transparent sidebartoggler"></div>
-        <div class="dark-transparent sidebartoggler"></div>
     </div>
 
     <!--  Mobilenavbar -->

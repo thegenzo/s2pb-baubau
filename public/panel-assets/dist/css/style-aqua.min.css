@@ -17334,7 +17334,7 @@
     --bs-body-line-height: 1.5;
     --bs-body-color: #5a6a85;
     --bs-body-color-rgb: 90, 106, 133;
-    --bs-body-bg: rgba(230, 239, 235, 0.2);
+    --bs-body-bg: #ffffff;
     --bs-body-bg-rgb: 255, 255, 255;
     --bs-emphasis-color: #000;
     --bs-emphasis-color-rgb: 0, 0, 0;
@@ -37406,7 +37406,7 @@ html[dir="rtl"] .welcome-bg-img {
     position: relative;
     z-index: 50;
     width: 100%;
-    background: #fff;
+    background: #006239;
     padding: 0 25px;
 }
 .app-header .container-fluid,
@@ -37450,7 +37450,7 @@ html[dir="rtl"] .welcome-bg-img {
     height: 36px;
     width: 100%;
     border-radius: 7px;
-    background: #ecf2ff;
+    background: #f8c301;
     z-index: -1;
 }
 .nav-icon-hover {
@@ -37467,7 +37467,7 @@ html[dir="rtl"] .welcome-bg-img {
     z-index: -1;
     border-radius: 100px;
     transition: all 0.3s ease-in-out;
-    background-color: #ecf2ff;
+    background-color: #f8c301;
 }
 .profile-name {
     color: #fff;

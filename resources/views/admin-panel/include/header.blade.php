@@ -11,7 +11,7 @@ $auth = [
             <li class="nav-item">
                 <a class="nav-link sidebartoggler nav-icon-hover ms-n3" id="headerCollapse"
                     href="javascript:void(0)">
-                    <i class="ti ti-menu-2"></i>
+                    <i class="ti ti-menu-2 text-white"></i>
                 </a>
             </li>
         </ul>
