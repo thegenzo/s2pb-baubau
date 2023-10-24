@@ -62,7 +62,6 @@ $label = [
 											<th>Nama BB</th>
 											<th>Tgl. Masuk</th>
 											<th>Lokasi Penyimpanan</th>
-											<th class="text-center">Status</th>
 											<th class="text-center">Action</th>
 										</tr>
 									</thead>
@@ -76,9 +75,6 @@ $label = [
 												<td>{{ $evidence->name }}</td>
 												<td>{{ $evidence->entry_date }}</td>
 												<td>{{ $evidence->storage_location }}</td>
-												<td class="text-center">
-													<span class="badge rounded-pill bg-{{ $state[$evidence->status] }}">{{ $label[$evidence->status] }}</span>
-												</td>
 												<td class="text-center">
 													<a href="{{ route('admin-panel.evidence.show', $evidence->id) }} " class="btn btn-sm btn-info"
                                                         data-toggle="tooltip" data-placement="top" title="Lihat">

@@ -12,7 +12,7 @@
 <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
 
-<script>
+{{-- <script>
     (function() {
         let onPageLoad = localStorage.getItem("theme");
         if (!onPageLoad) {
@@ -31,4 +31,4 @@
 
         // console.log('new theme selected : ' + value);
     }
-</script>
+</script> --}}

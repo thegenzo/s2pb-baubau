@@ -90,7 +90,7 @@ $auth = [
                                 <div class="d-grid py-4 px-7 pt-8">
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button type="submit" class="btn btn-outline-primary">Log Out</button>
+                                        <button type="submit" class="btn btn-outline-danger">Log Out</button>
                                     </form>
                                 </div>
                             </div>
