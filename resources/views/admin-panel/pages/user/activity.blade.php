@@ -81,7 +81,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										@forelse ($activities as $activity)
+										@foreach ($activities as $activity)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td>{{ $activity->activity }}</td>
@@ -90,11 +90,7 @@
 													<a href="{{ $activity->url }}" target="_blank">{{ $activity->url }}</a>
 												</td>
 											</tr>
-										@empty
-											<tr>
-												<td colspan="4" class="text-center">Data Aktivitas Kosong</td>
-											</tr>
-										@endforelse
+										@endforeach
 									</tbody>
 								</table>
 							</div>

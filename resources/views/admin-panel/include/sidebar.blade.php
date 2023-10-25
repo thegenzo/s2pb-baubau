@@ -10,7 +10,7 @@
 					class="light-logo rounded" width="38" alt="" /> --}}
             </a>
             <div class="close-btn d-lg-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                <i class="ti ti-x fs-8 text-muted"></i>
+                <i class="ti ti-x fs-8 text-black"></i>
             </div>
         </div>
         <!-- Sidebar navigation-->

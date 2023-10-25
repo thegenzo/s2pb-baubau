@@ -62,7 +62,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										@forelse ($users as $user)
+										@foreach ($users as $user)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td>{{ $user->name }}</td>
@@ -92,11 +92,7 @@
                                                     </form>
 												</td>
 											</tr>
-										@empty
-											<tr>
-												<td colspan="6" class="text-center">Data User Kosong</td>
-											</tr>
-										@endforelse
+										@endforeach
 									</tbody>
 								</table>
 							</div>

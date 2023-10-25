@@ -25,7 +25,7 @@ $auth = [
             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="p-2">
-                <i class="ti ti-dots fs-7"></i>
+                <i class="ti ti-dots fs-7 text-white"></i>
             </span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">

@@ -53,7 +53,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										@forelse ($criminals as $criminal)
+										@foreach ($criminals as $criminal)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td>{{ $criminal->name }}</td>
@@ -82,11 +82,7 @@
                                                     </form>
 												</td>
 											</tr>
-										@empty
-											<tr>
-												<td colspan="8" class="text-center">Data Pelaku Tindak Pidana Kosong</td>
-											</tr>
-										@endforelse
+										@endforeach
 									</tbody>
 								</table>
 							</div>

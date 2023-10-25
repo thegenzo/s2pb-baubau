@@ -66,7 +66,7 @@ $label = [
 										</tr>
 									</thead>
 									<tbody>
-										@forelse ($evidences as $evidence)
+										@foreach ($evidences as $evidence)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td class="text-center">{!! $evidence->getBarcodeAttribute($evidence->register_number, 2.5, 80) !!}</td>
@@ -116,11 +116,7 @@ $label = [
 													@endif
 												</td>
 											</tr>
-										@empty
-											<tr>
-												<td colspan="9" class="text-center">Data Barang Bukti Kosong</td>
-											</tr>
-										@endforelse
+										@endforeach
 									</tbody>
 								</table>
 							</div>

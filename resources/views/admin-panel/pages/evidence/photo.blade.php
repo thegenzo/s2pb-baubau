@@ -82,7 +82,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										@forelse ($photos as $photo)
+										@foreach ($photos as $photo)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td class="text-center">
@@ -99,11 +99,7 @@
                                                     </form>
 												</td>
 											</tr>
-										@empty
-											<tr>
-												<td colspan="3" class="text-center">Data Foto BB Kosong</td>
-											</tr>
-										@endforelse
+										@endforeach
 									</tbody>
 								</table>
 							</div>

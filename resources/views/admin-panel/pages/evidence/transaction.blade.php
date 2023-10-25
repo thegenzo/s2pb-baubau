@@ -100,18 +100,14 @@
 										</tr>
 									</thead>
 									<tbody>
-										@forelse ($transactions as $transaction)
+										@foreach ($transactions as $transaction)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td class="text-center">{{ $transaction->transaction_date }}</td>
 												<td>{{ $transaction->transaction_type }}</td>
 												<td>{{ $transaction->notes }}</td>
 											</tr>
-										@empty
-											<tr>
-												<td colspan="4" class="text-center">Data Transaksi BB Kosong</td>
-											</tr>
-										@endforelse
+										@endforeach
 									</tbody>
 								</table>
 							</div>

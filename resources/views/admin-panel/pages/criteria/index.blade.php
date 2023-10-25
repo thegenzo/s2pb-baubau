@@ -47,7 +47,7 @@
 										</tr>
 									</thead>
 									<tbody>
-										@forelse ($criterias as $criteria)
+										@foreach ($criterias as $criteria)
 											<tr>
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td>{{ $criteria->name }}</td>
@@ -66,11 +66,7 @@
                                                     </form>
 												</td>
 											</tr>
-										@empty
-											<tr>
-												<td colspan="3" class="text-center">Data Kriteria Kosong</td>
-											</tr>
-										@endforelse
+										@endforeach
 									</tbody>
 								</table>
 							</div>
