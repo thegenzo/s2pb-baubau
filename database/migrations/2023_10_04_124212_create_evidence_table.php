@@ -24,8 +24,8 @@ return new class extends Migration
             $table->date('entry_date');
             $table->string('storage_location');
             $table->enum('status', ['detained', 'returned', 'terminated']);
-            $table->datetime('returned_at')->default(null);
-            $table->datetime('terminated_at')->default(null);
+            $table->datetime('returned_at')->nullable();
+            $table->datetime('terminated_at')->nullable();
             $table->timestamps();
         });
     }
