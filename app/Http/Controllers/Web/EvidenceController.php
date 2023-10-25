@@ -6,6 +6,7 @@ use App\Helpers\UserActivity;
 use App\Models\Evidence;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -175,8 +176,11 @@ class EvidenceController extends Controller
         }
 
         foreach ($evidence->evidence_photo()->get() as $data) {
-            File::delete($data->image);
-            $data->delete();
+            $path = public_path($data->image);
+            if(file_exists($path)) {
+                File::delete($data->image);
+                $data->delete();
+            }
         }
 
         UserActivity::addToLog('Menghapus Data Barang Bukti : ' . $evidence->name);
@@ -196,6 +200,7 @@ class EvidenceController extends Controller
     {
         $evidence = Evidence::find($id);
         $evidence->status = 'returned';
+        $evidence->returned_at = Carbon::now();
         $evidence->save();
 
         $evidence->evidence_transaction()->create([
@@ -213,6 +218,7 @@ class EvidenceController extends Controller
     {
         $evidence = Evidence::find($id);
         $evidence->status = 'terminated';
+        $evidence->terminated_at = Carbon::now();
         $evidence->save();
 
         $evidence->evidence_transaction()->create([

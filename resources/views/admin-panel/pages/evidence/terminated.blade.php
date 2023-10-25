@@ -61,7 +61,7 @@ $label = [
 											<th class="text-center">Kriteria</th>
 											<th>Nama BB</th>
 											<th>Tgl. Masuk</th>
-											<th>Lokasi Penyimpanan</th>
+											<th>Dimusnahkan Tanggal</th>
 											<th class="text-center">Action</th>
 										</tr>
 									</thead>
@@ -74,7 +74,7 @@ $label = [
 												<td class="text-center">{{ $evidence->criminal_perpetrator->criteria->name }}</td>
 												<td>{{ $evidence->name }}</td>
 												<td>{{ $evidence->entry_date }}</td>
-												<td>{{ $evidence->storage_location }}</td>
+												<td>{{ \Carbon\Carbon::parse($evidence->terminated_at)->locale('id')->isoFormat('LL') }}</td>
 												<td class="text-center">
 													<a href="{{ route('admin-panel.evidence.show', $evidence->id) }} " class="btn btn-sm btn-info"
                                                         data-toggle="tooltip" data-placement="top" title="Lihat">
