@@ -37642,7 +37642,6 @@ html[dir="rtl"] .welcome-bg-img {
     transition: 0.2s ease-in;
     height: 100%;
     z-index: 11;
-    border-right: 1px solid #e5eaef;
 }
 .left-sidebar .scroll-sidebar {
     overflow-y: auto;
@@ -37757,7 +37756,7 @@ html[dir="rtl"] .welcome-bg-img {
 }
 .sidebar-nav ul .sidebar-item .first-level .sidebar-item .sidebar-link.active {
     background-color: transparent !important;
-    color: #0074ba !important;
+    color: #fff !important;
 }
 .sidebar-nav ul .sidebar-item .two-level .sidebar-item .sidebar-link {
     padding: 8px 10px 8px 45px;

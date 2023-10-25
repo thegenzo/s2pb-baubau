@@ -21,7 +21,7 @@ class CriminalPerpetrator extends Model
 
     public function criteria()
     {
-        return $this->belongsTo(CriminalPerpetrator::class);
+        return $this->belongsTo(Criteria::class);
     }
 
     public function evidence()

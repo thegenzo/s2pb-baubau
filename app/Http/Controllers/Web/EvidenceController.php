@@ -52,7 +52,6 @@ class EvidenceController extends Controller
     {
         $rules = [
             'criminal_perpetrator_id'       => 'required',
-            'criteria_id'                   => 'required',
             'register_number'               => 'required|numeric|unique:evidence',
             'name'                          => 'required',
             'amount'                        => 'required|numeric',
@@ -64,7 +63,6 @@ class EvidenceController extends Controller
 
         $messages = [
             'criminal_perpetrator_id.required'           => 'Pemilik BB wajib diisi',
-            'criteria_id.required'                       => 'Kriteria wajib diisi',
             'register_number.required'                   => 'Nomor Registrasi wajib diisi',
             'register_number.numeric'                    => 'Nomor Registrasi harus berupa angka',
             'register_number.unique'                     => 'Nomor Registrasi sudah terdaftar',
@@ -104,8 +102,10 @@ class EvidenceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Evidence $evidence)
+    public function show($id)
     {
+        $evidence = Evidence::with(['criminal_perpetrator'])->where('id', $id)->first();
+
         return view('admin-panel.pages.evidence.show', compact('evidence'));
     }
     
@@ -124,7 +124,6 @@ class EvidenceController extends Controller
     {
         $rules = [
             'criminal_perpetrator_id'       => 'required',
-            'criteria_id'                   => 'required',
             'register_number'               => 'required|numeric|unique:evidence',
             'name'                          => 'required',
             'amount'                        => 'required|numeric',
@@ -136,7 +135,6 @@ class EvidenceController extends Controller
 
         $messages = [
             'criminal_perpetrator_id.required'           => 'Pemilik BB wajib diisi',
-            'criteria_id.required'                       => 'Kriteria wajib diisi',
             'register_number.required'                   => 'Nomor Registrasi wajib diisi',
             'register_number.numeric'                    => 'Nomor Registrasi harus berupa angka',
             'register_number.unique'                     => 'Nomor Registrasi sudah terdaftar',

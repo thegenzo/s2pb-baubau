@@ -70,7 +70,7 @@ $label = [
 												<td class="text-center">{{ $loop->iteration }}</td>
 												<td class="text-center">{{ $evidence->register_number }}</td>
 												<td>{{ $evidence->criminal_perpetrator->name }}</td>
-												<td class="text-center">{{ $evidence->criteria->name }}</td>
+												<td class="text-center">{{ $evidence->criminal_perpetrator->criteria->name }}</td>
 												<td>{{ $evidence->name }}</td>
 												<td>{{ $evidence->entry_date }}</td>
 												<td>{{ $evidence->storage_location }}</td>

@@ -67,14 +67,6 @@
 									@endforeach
 								</select>
                             </div>
-							<div class="form-group mb-3">
-                                <label for="criteria_id">Kriteria <span class="text-danger">*</span></label>
-                                <select name="criteria_id" id="criteria_id" class="select2 form-control" style="width: 100%; height: 36px">
-									@foreach (\App\Models\Criteria::all() as $criteria)
-									<option value="{{ $criteria->id }}" {{ $evidence->criteria_id == $criteria->id ? 'selected' : '' }}>{{ $criteria->name }}</option>
-									@endforeach
-								</select>
-                            </div>
                             <div class="form-group mb-3">
                                 <label for="register_number">Nomor Registrasi <span class="text-danger">*</span></label>
                                 <input type="number" name="register_number" id="register_number" class="form-control"

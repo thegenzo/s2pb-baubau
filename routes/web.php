@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
         Route::group(['middleware' => ['auth', 'ceklevel:admin,user']], function () {
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin-panel.dashboard');
+            Route::get('/criminal/print/{id}', [CriminalPerpetratorController::class, 'print'])->name('admin-panel.criminal.print');
             Route::resource('criminal', CriminalPerpetratorController::class, ['as' => 'admin-panel']);
             Route::resource('criteria', CriteriaController::class, ['as' => 'admin-panel']);
 

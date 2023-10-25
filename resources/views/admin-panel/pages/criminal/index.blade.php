@@ -64,6 +64,10 @@
 												<td class="text-center">{{ $criminal->gender }}</td>
 												<td>{{ $criminal->address }}</td>
 												<td class="text-center">
+													<a href="{{ route('admin-panel.criminal.show', $criminal->id) }} " class="btn btn-sm btn-info"
+                                                        data-toggle="tooltip" data-placement="top" title="Lihat">
+                                                        <i class="ti ti-eye-check"></i>
+                                                    </a>
 													<a href="{{ route('admin-panel.criminal.edit', $criminal->id) }} " class="btn btn-sm btn-warning"
                                                         data-toggle="tooltip" data-placement="top" title="Edit">
                                                         <i class="fa fa-pencil-alt"></i>

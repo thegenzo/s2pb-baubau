@@ -57,8 +57,8 @@
                         <h5 class="text-muted">Pemilik BB</h5>
                         <h5>{{ $evidence->criminal_perpetrator->name }}</h5>
                         <hr>
-                        <h5 class="text-muted">Kriteria BB</h5>
-                        <h5>{{ $evidence->criteria->name }}</h5>
+                        <h5 class="text-muted">Kriteria Kejahatan</h5>
+                        <h5>{{ $evidence->criminal_perpetrator->criteria->name }}</h5>
                         <hr>
                         <h5 class="text-muted">Nama BB</h5>
                         <h5>{{ $evidence->name }}</h5>

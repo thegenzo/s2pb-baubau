@@ -70,9 +70,13 @@ class CriminalPerpetratorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CriminalPerpetrator $criminalPerpetrator)
+    public function show($id)
     {
-        return view('admin-panel.pages.criminal.show', compact('criminalPerpetrator'));
+        $criminalPerpetrator = CriminalPerpetrator::find($id);
+
+        $evidences = $criminalPerpetrator->evidence()->get();
+
+        return view('admin-panel.pages.criminal.show', compact('criminalPerpetrator', 'evidences'));
     }
 
     /**
@@ -140,5 +144,14 @@ class CriminalPerpetratorController extends Controller
         $criminal->delete();
 
         return back()->with('success', 'Pelaku tindak pidana berhasil dihapus');
+    }
+
+    public function print($id)
+    {
+        $criminalPerpetrator = CriminalPerpetrator::find($id);
+
+        $evidences = $criminalPerpetrator->evidence()->get();
+
+        return view('admin-panel.pages.criminal.print', compact('criminalPerpetrator', 'evidences'));
     }
 }
