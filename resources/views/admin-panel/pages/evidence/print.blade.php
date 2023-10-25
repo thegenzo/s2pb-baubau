@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Evidence Details</title>
+    <title>BB {{ $evidence->name }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
