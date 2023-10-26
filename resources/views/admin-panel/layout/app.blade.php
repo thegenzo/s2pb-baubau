@@ -24,10 +24,10 @@
 
 <body>
     <!-- Preloader -->
-    <div class="preloader">
+    {{-- <div class="preloader">
         <img src="{{ asset('panel-assets/dist/images/logo-primary.png') }}"
             alt="loader" class="lds-ripple img-fluid" style="border-radius: 5px;" />
-    </div>
+    </div> --}}
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-theme="blue_theme" data-layout="vertical" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
