@@ -53,7 +53,7 @@ class EvidenceController extends Controller
     {
         $rules = [
             'criminal_perpetrator_id'       => 'required',
-            'register_number'               => 'required|numeric|unique:evidence',
+            'register_number'               => 'required|unique:evidence',
             'name'                          => 'required',
             'amount'                        => 'required|numeric',
             'unit'                          => 'required',
@@ -65,7 +65,6 @@ class EvidenceController extends Controller
         $messages = [
             'criminal_perpetrator_id.required'           => 'Pemilik BB wajib diisi',
             'register_number.required'                   => 'Nomor Registrasi wajib diisi',
-            'register_number.numeric'                    => 'Nomor Registrasi harus berupa angka',
             'register_number.unique'                     => 'Nomor Registrasi sudah terdaftar',
             'name.required'                              => 'Nama BB wajib diisi',
             'amount.required'                            => 'Jumlah wajib diisi',
@@ -125,7 +124,7 @@ class EvidenceController extends Controller
     {
         $rules = [
             'criminal_perpetrator_id'       => 'required',
-            'register_number'               => 'required|numeric|unique:evidence',
+            'register_number'               => 'required|unique:evidence',
             'name'                          => 'required',
             'amount'                        => 'required|numeric',
             'unit'                          => 'required',
@@ -137,7 +136,6 @@ class EvidenceController extends Controller
         $messages = [
             'criminal_perpetrator_id.required'           => 'Pemilik BB wajib diisi',
             'register_number.required'                   => 'Nomor Registrasi wajib diisi',
-            'register_number.numeric'                    => 'Nomor Registrasi harus berupa angka',
             'register_number.unique'                     => 'Nomor Registrasi sudah terdaftar',
             'name.required'                              => 'Nama BB wajib diisi',
             'amount.required'                            => 'Jumlah wajib diisi',
@@ -169,8 +167,10 @@ class EvidenceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Evidence $evidence)
+    public function destroy($id)
     {
+        $evidence = Evidence::find($id);
+
         if($evidence->evidence_transaction()->count() > 1) {
             return redirect()->back()->with('failed', 'Barang Bukti ini telah memiliki riwayat transaksi lebih dari 2 kali');
         }
@@ -185,6 +185,7 @@ class EvidenceController extends Controller
 
         UserActivity::addToLog('Menghapus Data Barang Bukti : ' . $evidence->name);
 
+        $evidence->evidence_transaction()->delete();
         $evidence->delete();
 
         return back()->with('success', 'Data Barang Bukti berhasil dihapus');

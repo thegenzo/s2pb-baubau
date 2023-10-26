@@ -40,11 +40,6 @@ class Evidence extends Model
         return $this->hasMany(EvidenceTransaction::class);
     }
 
-    public function getEntryDateAttribute($value)
-    {
-        return Carbon::parse($value)->locale('id')->isoFormat('LL');
-    }
-
     public function getBarcodeAttribute($value, $w, $h)
     {
         $dns1d = new DNS1D();

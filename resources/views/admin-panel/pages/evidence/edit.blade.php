@@ -60,7 +60,7 @@
                             @csrf
 							@method('PUT')
 							<div class="form-group mb-3">
-                                <label for="criminal_perpetrator_id">Pemilik BB <span class="text-danger">*</span></label>
+                                <label for="criminal_perpetrator_id">Nama Pelaku <span class="text-danger">*</span></label>
                                 <select name="criminal_perpetrator_id" id="criminal_perpetrator_id" class="select2 form-control" style="width: 100%; height: 36px">
 									@foreach (\App\Models\CriminalPerpetrator::all() as $criminal)
 									<option value="{{ $criminal->id }}" {{ $evidence->criminal_perpetrator_id == $criminal->id ? 'selected' : '' }}>{{ $criminal->name }}</option>
@@ -69,7 +69,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="register_number">Nomor Registrasi <span class="text-danger">*</span></label>
-                                <input type="number" name="register_number" id="register_number" class="form-control"
+                                <input type="text" name="register_number" id="register_number" class="form-control"
                                     value="{{ $evidence->register_number }}">
                             </div>
 							<div class="form-group mb-3">

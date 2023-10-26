@@ -56,9 +56,11 @@ $label = [
 										<tr>
 											<th class="text-center">No</th>
 											<th class="text-center">No. Registrasi</th>
-											<th>Pemilik Barang</th>
+											<th>Nama Pelaku</th>
 											<th class="text-center">Kriteria</th>
 											<th>Nama BB</th>
+											<th class="text-center">Jumlah</th>
+											<th class="text-center">Satuan</th>
 											<th>Tgl. Masuk</th>
 											<th>Dikembalikan Tanggal</th>
 											<th class="text-center">Action</th>
@@ -72,6 +74,8 @@ $label = [
 												<td>{{ $evidence->criminal_perpetrator->name }}</td>
 												<td class="text-center">{{ $evidence->criminal_perpetrator->criteria->name }}</td>
 												<td>{{ $evidence->name }}</td>
+												<td class="text-center">{{ $evidence->amount }}</td>
+												<td class="text-center">{{ $evidence->unit }}</td>
 												<td>{{ $evidence->entry_date }}</td>
 												<td>{{ \Carbon\Carbon::parse($evidence->returned_at)->locale('id')->isoFormat('LL') }}</td>
 												<td class="text-center">

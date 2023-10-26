@@ -59,9 +59,9 @@
                         <form method="POST" action="{{ route('admin-panel.evidence.store') }}">
                             @csrf
 							<div class="form-group mb-3">
-                                <label for="criminal_perpetrator_id">Pemilik BB <span class="text-danger">*</span></label>
+                                <label for="criminal_perpetrator_id">Nama Pelaku <span class="text-danger">*</span></label>
                                 <select name="criminal_perpetrator_id" id="criminal_perpetrator_id" class="select2 form-control" style="width: 100%; height: 36px">
-									<option value="" selected hidden>--- Pilih BB ---</option>
+									<option value="" selected hidden>--- Pilih Nama Pelaku ---</option>
 									@foreach (\App\Models\CriminalPerpetrator::all() as $criminal)
 									<option value="{{ $criminal->id }}" {{ old('criminal_perpetrator_id') == $criminal->id ? 'selected' : '' }}>{{ $criminal->name }}</option>
 									@endforeach
@@ -69,7 +69,7 @@
                             </div>
                             <div class="form-group mb-3">
                                 <label for="register_number">Nomor Registrasi <span class="text-danger">*</span></label>
-                                <input type="number" name="register_number" id="register_number" class="form-control"
+                                <input type="text" name="register_number" id="register_number" class="form-control"
                                     value="{{ old('register_number') }}">
                             </div>
 							<div class="form-group mb-3">

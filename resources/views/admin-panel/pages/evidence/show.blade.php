@@ -54,7 +54,7 @@
                             {!! $evidence->getBarcodeAttribute($evidence->register_number, 3, 100) !!}
                         </div>
                         <hr>
-                        <h5 class="text-muted">Pemilik BB</h5>
+                        <h5 class="text-muted">Nama Pelaku</h5>
                         <h5>{{ $evidence->criminal_perpetrator->name }}</h5>
                         <hr>
                         <h5 class="text-muted">Kriteria Kejahatan</h5>
@@ -73,7 +73,7 @@
                         <p class="text-black">{!! $evidence->description !!}</p>
                         <hr>
                         <h5 class="text-muted">Tanggal Masuk</h5>
-                        <h5>{{ $evidence->entry_date }}</h5>
+                        <h5>{{ \Carbon\Carbon::parse($evidence->entry_date)->locale('id')->isoFormat('LL') }}</h5>
                         <hr>
                         <h5 class="text-muted">Lokasi Penyimpanan</h5>
                         <h5>{{ $evidence->storage_location }}</h5>

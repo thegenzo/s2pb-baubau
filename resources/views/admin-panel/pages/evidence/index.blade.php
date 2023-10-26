@@ -56,10 +56,12 @@ $label = [
 									<thead>
 										<tr>
 											<th class="text-center">No</th>
-											<th class="text-center">Barcode</th>
-											<th>Pemilik Barang</th>
+											<th class="text-center">Barcode & Noreg</th>
+											<th>Nama Pelaku</th>
 											<th class="text-center">Kriteria</th>
 											<th>Nama BB</th>
+											<th class="text-center">Jumlah</th>
+											<th class="text-center">Satuan</th>
 											<th>Tgl. Masuk</th>
 											<th>Lokasi Penyimpanan</th>
 											<th class="text-center">Action</th>
@@ -73,7 +75,9 @@ $label = [
 												<td>{{ $evidence->criminal_perpetrator->name }}</td>
 												<td class="text-center">{{ $evidence->criminal_perpetrator->criteria->name }}</td>
 												<td>{{ $evidence->name }}</td>
-												<td>{{ $evidence->entry_date }}</td>
+												<td class="text-center">{{ $evidence->amount }}</td>
+												<td class="text-center">{{ $evidence->unit }}</td>
+												<td>{{ \Carbon\Carbon::parse($evidence->entry_date)->locale('id')->isoFormat('LL') }}</td>
 												<td>{{ $evidence->storage_location }}</td>
 												<td class="text-center">
 													<a href="{{ route('admin-panel.evidence.show', $evidence->id) }} " class="btn btn-sm btn-info"
@@ -142,7 +146,7 @@ $label = [
 			event.preventDefault();
 			Swal.fire({
 				title: 'Yakin Hapus Barang Bukti?',
-				text: "Barang Bukti yang terhapus tidak dapat dikembalikan",
+				text: "Menghapus barang bukti juga akan menghapus laporan keluar/masuk barang bukti tersebut",
 				icon: 'warning',
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
