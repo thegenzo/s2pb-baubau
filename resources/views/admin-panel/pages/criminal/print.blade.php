@@ -64,7 +64,7 @@
             display: block; /* Prevent content from breaking across pages */
         }
 
-        table, th, td {
+        .detail table, th, td {
             border: 1px solid #000;
             border-collapse: collapse;
             padding: 10px;
@@ -103,11 +103,33 @@
             <div class="row-container">
                 <div class="detail">
                     <h2 style="text-align: left;">Informasi Pelaku Tindak Pidana</h2>
-                    <p><strong>Nama:</strong> {{ $criminalPerpetrator->name }}</p>
-                    <p><strong>No. Identitas:</strong> {{ $criminalPerpetrator->identification_number }}</p>
-                    <p><strong>Kriteria:</strong> {{ $criminalPerpetrator->criteria->name }}</p>
-                    <p><strong>Tempat, Tanggal Lahir:</strong> {{ $criminalPerpetrator->place_of_birth }}, {{ $criminalPerpetrator->date_of_birth }}</p>
-                    <p><strong>Alamat:</strong> {{ $criminalPerpetrator->address }}</p>
+					<table>
+						<tr>
+							<td>Nama</td>
+							<td>:</td>
+							<td>{{ $criminalPerpetrator->name }}</td>
+						</tr>
+						<tr>
+							<td>No. Identitas</td>
+							<td>:</td>
+							<td>{{ $criminalPerpetrator->identification_number }}</td>
+						</tr>
+						<tr>
+							<td>Kriteria</td>
+							<td>:</td>
+							<td>{{ $criminalPerpetrator->criteria->name }}</td>
+						</tr>
+						<tr>
+							<td>Tempat, Tanggal Lahir</td>
+							<td>:</td>
+							<td>{{ $criminalPerpetrator->place_of_birth }}, {{ $criminalPerpetrator->date_of_birth }}</td>
+						</tr>
+						<tr>
+							<td>Alamat</td>
+							<td>:</td>
+							<td>{{ $criminalPerpetrator->address }}</td>
+						</tr>
+					</table>
                 </div>
 
                 <div class="barcode-list">

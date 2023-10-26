@@ -37406,7 +37406,7 @@ html[dir="rtl"] .welcome-bg-img {
     position: relative;
     z-index: 50;
     width: 100%;
-    background: #006239;
+    background: #328160;
     padding: 0 25px;
 }
 .app-header .container-fluid,
@@ -37637,7 +37637,7 @@ html[dir="rtl"] .welcome-bg-img {
 }
 .left-sidebar {
     width: 270px;
-    background-color: #f8c301;
+    background-color: #fad54d;
     position: absolute;
     transition: 0.2s ease-in;
     height: 100%;
