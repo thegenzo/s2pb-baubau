@@ -64,10 +64,8 @@
             display: block; /* Prevent content from breaking across pages */
         }
 
-        .detail table, th, td {
-            border: 1px solid #000;
-            border-collapse: collapse;
-            padding: 10px;
+        table, th, tr, td {
+            border: 0;
         }
 
         @page {
@@ -106,27 +104,22 @@
 					<table>
 						<tr>
 							<td>Nama</td>
-							<td>:</td>
 							<td>{{ $criminalPerpetrator->name }}</td>
 						</tr>
 						<tr>
 							<td>No. Identitas</td>
-							<td>:</td>
 							<td>{{ $criminalPerpetrator->identification_number }}</td>
 						</tr>
 						<tr>
 							<td>Kriteria</td>
-							<td>:</td>
 							<td>{{ $criminalPerpetrator->criteria->name }}</td>
 						</tr>
 						<tr>
 							<td>Tempat, Tanggal Lahir</td>
-							<td>:</td>
 							<td>{{ $criminalPerpetrator->place_of_birth }}, {{ $criminalPerpetrator->date_of_birth }}</td>
 						</tr>
 						<tr>
 							<td>Alamat</td>
-							<td>:</td>
 							<td>{{ $criminalPerpetrator->address }}</td>
 						</tr>
 					</table>
