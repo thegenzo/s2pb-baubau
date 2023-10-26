@@ -50,7 +50,6 @@ $label = [
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<a href="{{ route('admin-panel.evidence.create') }}" class="btn btn-secondary mb-3">Tambah Barang Bukti</a>
 							<div class="table-responsive">
 								<table id="dataTable" class="table border table-striped table-bordered display nowrap" style="width: 100%">
 									<thead>
@@ -84,36 +83,6 @@ $label = [
                                                         data-toggle="tooltip" data-placement="top" title="Edit">
                                                         <i class="fa fa-pencil-alt"></i>
                                                     </a>
-                                                    <form action="{{ route('admin-panel.evidence.destroy', $evidence->id) }}" method="POST" class="d-inline swal-confirm">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-sm btn-danger" type="submit"
-                                                            data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Hapus">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </form>
-													@if ($evidence->status == 'detained')
-														@if(auth()->user()->level == 'admin')
-															<div>
-																<form action="{{ route('admin-panel.evidence.return', $evidence->id) }}" method="POST" class="d-inline return-evidence">
-																	@csrf
-																	@method('PUT')
-																	<button class="btn btn-sm btn-success mt-1" type="submit"
-																		data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Kembalikan BB">
-																		<i class="fas fa-undo"></i>
-																	</button>
-																</form>
-																<form action="{{ route('admin-panel.evidence.terminate', $evidence->id) }}" method="POST" class="d-inline terminate-evidence">
-																	@csrf
-																	@method('PUT')
-																	<button class="btn btn-sm btn-danger mt-1" type="submit"
-																		data-id="{{ $evidence->id }}" data-toggle="tooltip" data-placement="top" title="Musnahkan BB">
-																		<i class="fas fa-bomb"></i>
-																	</button>
-																</form>
-															</div>
-														@endif
-													@endif
 												</td>
 											</tr>
 										@endforeach
