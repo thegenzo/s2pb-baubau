@@ -65,7 +65,7 @@
         }
 
         table, th, tr, td {
-            border: 0;
+            padding: 10px;
         }
 
         @page {
