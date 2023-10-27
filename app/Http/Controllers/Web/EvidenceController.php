@@ -171,9 +171,7 @@ class EvidenceController extends Controller
     {
         $evidence = Evidence::find($id);
 
-        if($evidence->evidence_transaction()->count() > 1) {
-            return redirect()->back()->with('failed', 'Barang Bukti ini telah memiliki riwayat transaksi lebih dari 2 kali');
-        }
+        $evidence->evidence_transaction()->delete();
 
         foreach ($evidence->evidence_photo()->get() as $data) {
             $path = public_path($data->image);
@@ -184,8 +182,7 @@ class EvidenceController extends Controller
         }
 
         UserActivity::addToLog('Menghapus Data Barang Bukti : ' . $evidence->name);
-
-        $evidence->evidence_transaction()->delete();
+        
         $evidence->delete();
 
         return back()->with('success', 'Data Barang Bukti berhasil dihapus');
