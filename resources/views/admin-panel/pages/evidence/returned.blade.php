@@ -76,7 +76,7 @@ $label = [
 												<td>{{ $evidence->name }}</td>
 												<td class="text-center">{{ $evidence->amount }}</td>
 												<td class="text-center">{{ $evidence->unit }}</td>
-												<td>{{ $evidence->entry_date }}</td>
+												<td>{{ \Carbon\Carbon::parse($evidence->entry_date)->locale('id')->isoFormat('LL') }}</td>
 												<td>{{ \Carbon\Carbon::parse($evidence->returned_at)->locale('id')->isoFormat('LL') }}</td>
 												<td class="text-center">
 													<a href="{{ route('admin-panel.evidence.show', $evidence->id) }} " class="btn btn-sm btn-info"
