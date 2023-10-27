@@ -137,7 +137,7 @@ class CriminalPerpetratorController extends Controller
         $criminal = CriminalPerpetrator::find($id);
 
         if($criminal->evidence()->count() > 0) {
-            return back()->with('error', 'Data pelaku tindak pidana ini memiliki data relasi dengan data Barang Bukti');
+            return back()->with('failed', 'Data Pelaku Tindak Pidana ini memiliki data relasi dengan data Barang Bukti');
         }
 
         UserActivity::addToLog('Menghapus data pelaku tindak pidana : ' . $criminal);
