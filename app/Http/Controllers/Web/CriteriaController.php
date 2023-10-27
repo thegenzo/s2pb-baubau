@@ -106,7 +106,7 @@ class CriteriaController extends Controller
         $criteria = Criteria::find($id);
 
         if($criteria->criminal_perpetrator()->count() > 0) {
-            return redirect()->back()->with('failed', 'Kriteria ini memiliki data relasi dengan data Barang Bukti');
+            return redirect()->back()->with('failed', 'Kriteria ini memiliki data relasi dengan data Pelaku Tindak Pidana');
         }
         UserActivity::addToLog('Menghapus kriteria : ' . $criteria->name);
         $criteria->delete();

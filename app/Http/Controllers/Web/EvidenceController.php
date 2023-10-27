@@ -84,7 +84,6 @@ class EvidenceController extends Controller
 
         $data = $request->all();
         $data['criminal_perpetrator_id'] = $request->criminal_perpetrator_id;
-        $data['criteria_id'] = $request->criteria_id;
 
         $evidence = Evidence::create($data);
 
@@ -182,7 +181,7 @@ class EvidenceController extends Controller
         }
 
         UserActivity::addToLog('Menghapus Data Barang Bukti : ' . $evidence->name);
-        
+
         $evidence->delete();
 
         return back()->with('success', 'Data Barang Bukti berhasil dihapus');
