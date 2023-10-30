@@ -83,6 +83,7 @@
                             <a href="{{ route('admin-panel.evidence.print', $evidence->id) }}" class="btn btn-danger mx-2"
                                 target="_blank">Cetak</a>
                             
+                            @if ($evidence->status == 'detained')
                             <!-- Evidence In Modal Trigger -->
                             <button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#modal-evidence-in">
                                 BB Masuk
@@ -165,6 +166,8 @@
                                 </div>
                                 <!-- /.modal-dialog -->
                             </div>
+                            @endif
+
                         </div>
                     </div>
                 </div>
