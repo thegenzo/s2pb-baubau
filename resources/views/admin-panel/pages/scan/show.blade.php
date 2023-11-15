@@ -6,15 +6,15 @@
     <!-- PrismJS -->
     <link rel="stylesheet" href="{{ asset('panel-assets/dist/libs/prismjs/themes/prism-okaidia.min.css') }}">
     <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="{{ asset('../../dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('panel-assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
 @endpush
 
 @php
-$label = [
-    'detained' => 'Ditahan',
-    'returned' => 'Dikembalikan',
-    'terminated' => 'Dimusnahkan'
-];
+    $label = [
+        'detained' => 'Ditahan',
+        'returned' => 'Dikembalikan',
+        'terminated' => 'Dimusnahkan',
+    ];
 @endphp
 
 @section('content')
@@ -36,7 +36,7 @@ $label = [
                     </div>
                     <div class="col-3">
                         <div class="text-center">
-                            <img src="{{ asset('panel-assets/dist/images/breadcrumb/barcode.png') }}" alt=""
+                            <img src="{{ asset('panel-assets/dist/images/breadcrumb/box.png') }}" alt=""
                                 class="img-fluid">
                         </div>
                     </div>
@@ -78,8 +78,97 @@ $label = [
                         <h5 class="text-muted">Lokasi Penyimpanan</h5>
                         <h5>{{ $evidence->storage_location }}</h5>
                         <hr>
-                        <a href="{{ route('admin-panel.evidence.index') }}" class="btn btn-warning mx-2">Kembali</a>
-                        <a href="{{ route('admin-panel.evidence.print', $evidence->id) }}" class="btn btn-danger mx-2" target="_blank">Cetak</a>
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('admin-panel.evidence.index') }}" class="btn btn-warning mx-2">Kembali</a>
+                            <a href="{{ route('admin-panel.evidence.print', $evidence->id) }}" class="btn btn-danger mx-2"
+                                target="_blank">Cetak</a>
+                            
+                            @if ($evidence->status == 'detained')
+                            <!-- Evidence In Modal Trigger -->
+                            <button class="btn btn-primary mx-2" data-bs-toggle="modal" data-bs-target="#modal-evidence-in">
+                                BB Masuk
+                            </button>
+                            <!-- Evidence In Modal -->
+                            <div id="modal-evidence-in" class="modal fade" tabindex="-1"
+                                aria-labelledby="modal-evidence-in" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex align-items-center">
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                Barang Bukti Masuk
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('admin-panel.transaction.in', $evidence->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="notes" class="control-label">Keterangan:</label>
+                                                    <textarea class="form-control" id="notes" name="notes" required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light-danger text-danger font-medium"
+                                                    data-bs-dismiss="modal">
+                                                    Tutup
+                                                </button>
+                                                <button type="submit" class="btn btn-success">
+                                                    Simpan Data
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+
+                            <!-- Evidence Out Modal Trigger -->
+                            <button class="btn btn-secondary mx-2" data-bs-toggle="modal" data-bs-target="#modal-evidence-out">
+                                BB Keluar
+                            </button>
+                            <!-- Evidence Out Modal -->
+                            <div id="modal-evidence-out" class="modal fade" tabindex="-1"
+                                aria-labelledby="modal-evidence-out" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex align-items-center">
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                Barang Bukti Keluar
+                                            </h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <form action="{{ route('admin-panel.transaction.out', $evidence->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <label for="notes" class="control-label">Keterangan:</label>
+                                                    <textarea class="form-control" id="notes" name="notes" required></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button"
+                                                    class="btn btn-light-danger text-danger font-medium"
+                                                    data-bs-dismiss="modal">
+                                                    Tutup
+                                                </button>
+                                                <button type="submit" class="btn btn-success">
+                                                    Simpan Data
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            @endif
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,10 +189,11 @@ $label = [
                                 </div>
                             @endforelse
                         </div>
-                        @if(auth()->user()->level == 'admin')
+                        @if (auth()->user()->level == 'admin')
                             <div class="d-flex justify-content-center mt-3">
                                 @if ($evidence->status == 'detained')
-                                    <a href="{{ route('admin-panel.photos.index', $evidence->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-image"></i> Tambah Foto BB</a>
+                                    <a href="{{ route('admin-panel.photos.index', $evidence->id) }}"
+                                        class="btn btn-sm btn-danger"><i class="fa fa-image"></i> Tambah Foto BB</a>
                                 @else
                                     <p>Tidak bisa menambahkan foto BB karena BB telah {{ $label[$evidence->status] }}</p>
                                 @endif
@@ -138,11 +228,9 @@ $label = [
                                 @endforelse
                             </tbody>
                         </table>
-                        @if(auth()->user()->level == 'admin')
+                        @if (auth()->user()->level == 'admin')
                             <div class="d-flex justify-content-center">
-                                @if ($evidence->status == 'detained')
-                                    <a href="{{ route('admin-panel.transaction.index', $evidence->id) }}" class="btn btn-sm btn-success"><i class="fa fa-file"></i> Tambah Transaksi BB</a>
-                                @else
+                                @if ($evidence->status != 'detained')
                                     <p>Tidak bisa menambahkan transaksi BB karena BB telah {{ $label[$evidence->status] }}</p>
                                 @endif
                             </div>
@@ -158,9 +246,9 @@ $label = [
     <script src="{{ asset('panel-assets/dist/libs/owl.carousel/dist/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('panel-assets/dist/libs/prismjs/prism.js') }}"></script>
     <script>
-        $(function () {
+        $(function() {
             var sync1 = $("#sync1");
-            var slidesPerPage = 4; 
+            var slidesPerPage = 4;
             var syncedSecondary = true;
 
             sync1.owlCarousel({
@@ -171,7 +259,10 @@ $label = [
                 dots: true,
                 loop: true,
                 responsiveRefreshRate: 200,
-                navText: ['<svg width="12" height="12" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="12" height="12" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
+                navText: [
+                    '<svg width="12" height="12" height="100%" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>',
+                    '<svg width="12" height="12" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 3px;stroke: #fff;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'
+                ],
             }).on('changed.owl.carousel', syncPosition);
         })
     </script>

@@ -6,7 +6,7 @@
     <!-- PrismJS -->
     <link rel="stylesheet" href="{{ asset('panel-assets/dist/libs/prismjs/themes/prism-okaidia.min.css') }}">
     <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="{{ asset('../../dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('panel-assets/dist/libs/owl.carousel/dist/assets/owl.carousel.min.css') }}">
 @endpush
 
 @php
