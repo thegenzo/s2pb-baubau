@@ -54,30 +54,30 @@ $label = [
                             {!! $evidence->getBarcodeAttribute($evidence->register_number, 3, 100) !!}
                         </div>
                         <hr>
-                        <h5 class="text-muted">Pemilik BB</h5>
+                        <h5 class="text-muted">Nama Pelaku</h5>
                         <h5>{{ $evidence->criminal_perpetrator->name }}</h5>
                         <hr>
-                        <h5 class="text-muted">Kriteria BB</h5>
-                        <h5>{{ $evidence->criteria->name }}</h5>
-						<hr>
-						<h5 class="text-muted">Nama BB</h5>
+                        <h5 class="text-muted">Kriteria Kejahatan</h5>
+                        <h5>{{ $evidence->criminal_perpetrator->criteria->name }}</h5>
+                        <hr>
+                        <h5 class="text-muted">Nama BB</h5>
                         <h5>{{ $evidence->name }}</h5>
-						<hr>
-						<h5 class="text-muted">Jumlah</h5>
+                        <hr>
+                        <h5 class="text-muted">Jumlah</h5>
                         <h5>{{ $evidence->amount }}</h5>
-						<hr>
-						<h5 class="text-muted">Satuan</h5>
+                        <hr>
+                        <h5 class="text-muted">Satuan</h5>
                         <h5>{{ $evidence->unit }}</h5>
-						<hr>
-						<h5 class="text-muted">Deskripsi BB</h5>
+                        <hr>
+                        <h5 class="text-muted">Deskripsi BB</h5>
                         <p class="text-black">{!! $evidence->description !!}</p>
-						<hr>
-						<h5 class="text-muted">Tanggal Masuk</h5>
-                        <h5>{{ $evidence->entry_date }}</h5>
-						<hr>
-						<h5 class="text-muted">Lokasi Penyimpanan</h5>
+                        <hr>
+                        <h5 class="text-muted">Tanggal Masuk</h5>
+                        <h5>{{ \Carbon\Carbon::parse($evidence->entry_date)->locale('id')->isoFormat('LL') }}</h5>
+                        <hr>
+                        <h5 class="text-muted">Lokasi Penyimpanan</h5>
                         <h5>{{ $evidence->storage_location }}</h5>
-						<hr>
+                        <hr>
                         <a href="{{ route('admin-panel.evidence.index') }}" class="btn btn-warning mx-2">Kembali</a>
                         <a href="{{ route('admin-panel.evidence.print', $evidence->id) }}" class="btn btn-danger mx-2" target="_blank">Cetak</a>
                     </div>
