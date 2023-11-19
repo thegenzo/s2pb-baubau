@@ -229,7 +229,33 @@
                                         <td>{{ $value->notes }}</td>
                                         <td>
                                             @if($value->image)
-                                            <a href="{{ $value->image }}" target="_blank">Lihat Gambar</a>
+                                                <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#imageModal{{ $value->id }}">Lihat Gambar</button>
+                                                <!-- Evidence Out Modal -->
+                                                <div id="imageModal{{ $value->id }}" class="modal fade" tabindex="-1" aria-labelledby="imageModal{{ $value->id }}" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header d-flex align-items-center">
+                                                                <h4 class="modal-title" id="myModalLabel">
+                                                                    Gambar
+                                                                </h4>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <img src="{{ $value->image }}" class="img-fluid" alt="Image">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button"
+                                                                    class="btn btn-light-danger text-danger font-medium"
+                                                                    data-bs-dismiss="modal">
+                                                                    x
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.modal-content -->
+                                                    </div>
+                                                    <!-- /.modal-dialog -->
+                                                </div>
                                             @else
                                             -
                                             @endif
