@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('transaction_date');
             $table->enum('transaction_type', ['terminated', 'returned', 'in', 'out']);
             $table->text('notes');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

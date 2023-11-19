@@ -100,12 +100,15 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ route('admin-panel.transaction.in', $evidence->id) }}"
-                                            method="POST">
+                                        <form action="{{ route('admin-panel.transaction.in', $evidence->id) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label for="notes" class="control-label">Keterangan:</label>
+                                                    <label for="image" class="control-label">Gambar (boleh dikosongkan)</label>
+                                                    <input type="file" name="image" id="image" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="notes" class="control-label">Keterangan: <span class="text-danger">*</span></label>
                                                     <textarea class="form-control" id="notes" name="notes" required></textarea>
                                                 </div>
                                             </div>
@@ -141,12 +144,15 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
-                                        <form action="{{ route('admin-panel.transaction.out', $evidence->id) }}"
-                                            method="POST">
+                                        <form action="{{ route('admin-panel.transaction.out', $evidence->id) }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label for="notes" class="control-label">Keterangan:</label>
+                                                    <label for="image" class="control-label">Gambar (boleh dikosongkan)</label>
+                                                    <input type="file" name="image" id="image" class="form-control">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="notes" class="control-label">Keterangan: <span class="text-danger">*</span></label>
                                                     <textarea class="form-control" id="notes" name="notes" required></textarea>
                                                 </div>
                                             </div>
@@ -212,6 +218,7 @@
                                     <th class="text-center">Tanggal Transaksi</th>
                                     <th>Tipe Transaksi</th>
                                     <th>Catatan</th>
+                                    <th>Gambar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -220,6 +227,13 @@
                                         <td class="text-center">{{ $value->transaction_date }}</td>
                                         <td>{{ $value->transaction_type }}</td>
                                         <td>{{ $value->notes }}</td>
+                                        <td>
+                                            @if($value->image)
+                                            <a href="{{ $value->image }}" target="_blank">Lihat Gambar</a>
+                                            @else
+                                            -
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>

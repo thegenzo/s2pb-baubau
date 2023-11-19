@@ -36,6 +36,9 @@
                                 <a href="/" class="text-nowrap logo-img text-center d-block mb-5 w-100">
                                     <img src="{{ asset('panel-assets/dist/images/logo-primary.png') }}"
                                         width="90" class="rounded" alt="">
+                                    <h3 class="text-center mt-2 text-success">
+                                        Kejaksaan Negeri Kota Baubau
+                                    </h3>
                                 </a>
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf

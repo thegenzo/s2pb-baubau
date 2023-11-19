@@ -14,7 +14,8 @@ class EvidenceTransaction extends Model
         'evidence_id',
         'transaction_date',
         'transaction_type',
-        'notes'
+        'notes',
+        'image',
     ];
 
     public function evidence()
